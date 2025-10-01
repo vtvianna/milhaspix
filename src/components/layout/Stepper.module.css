@@ -1,0 +1,67 @@
+.stepperContainer {
+  width: 248px;
+  height: 345px;
+  font-family: Arial, sans-serif;
+  background-color: white;
+  border-radius: 8px;
+  
+  padding: 20px;
+  box-sizing: border-box;
+  height: fit-content;
+}
+
+.stepItem {
+  display: flex;
+  align-items: flex-start;
+  position: relative;
+  margin-bottom: 30px;
+}
+
+.stepIcon {
+  position: relative;
+  margin-right: 20px;
+}
+
+.iconActive {
+  color: #007bff;
+  font-size: 24px;
+}
+
+.iconInactive {
+  color: #ccc;
+  font-size: 24px;
+}
+
+.verticalLine {
+  position: absolute;
+  top: 25px;
+  left: 12px;
+  width: 2px;
+  height: 30px;
+  background-color: #2b2929;
+}
+
+.stepContent {
+  color: #ccc;
+}
+
+.stepContent.active .stepTitle {
+  font-weight: bold;
+  color: #007bff;
+}
+
+.stepContent.active .stepSubtitle {
+  color: #555;
+}
+
+.stepTitle {
+  font-size: 16px;
+}
+
+.stepSubtitle {
+  font-size: 14px;
+  margin-top: 5px;
+}
+
+
+

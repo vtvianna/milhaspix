@@ -1,0 +1,10 @@
+.tiles {
+  width: 1216px;
+  height: 345px;
+  gap: 40px;       
+
+  opacity: 1;
+  
+  margin: 0 auto;
+}
+
