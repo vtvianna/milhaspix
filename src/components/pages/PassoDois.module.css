@@ -1,0 +1,19 @@
+.tiles {
+  width: 1216px;
+  height: 345px;
+  gap: 40px;
+  opacity: 1;
+  display: flex;
+  margin: 0 auto;
+  position: relative; 
+  align-items: flex-start; /* mantém alinhamento superior */
+}
+
+.container {
+  width: 640px;
+  height: 229px;
+  gap: 32px;
+  border: 1px solid #000;
+  opacity: 1;
+  border-radius: 8px;
+}
