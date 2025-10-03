@@ -3,9 +3,7 @@
   height: 345px;
   font-family: Arial, sans-serif;
   background-color: white;
-  border-radius: 8px;
   
-  padding: 20px;
   box-sizing: border-box;
   height: fit-content;
 }

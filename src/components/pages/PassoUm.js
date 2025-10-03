@@ -87,6 +87,7 @@ function PassoUm() {
           </div>
         </div>
 
+
         <div className={styles.container_campos}>
           {/* Campo CPF */}
           <div className={styles.campo}>
@@ -106,6 +107,7 @@ function PassoUm() {
               <p className={styles.erro}>CPF inválido</p>
             )}
           </div>
+          
 
           {/* Campo Produto */}
           <div className={styles.campo}>
