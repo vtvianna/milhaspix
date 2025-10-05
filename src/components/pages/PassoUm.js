@@ -89,7 +89,17 @@ function PassoUm() {
 
 
         <div className={styles.container_campos}>
-          {/* Campo CPF */}
+        
+          {/* Campo Produto */}
+          <div className={styles.campo}>
+            <label htmlFor="produto">Produto</label>
+            <select id="produto" className={styles.select}>
+              <option value="liminar">Liminar</option>
+              <option value="outro">Outro</option>
+            </select>
+          </div>
+
+            {/* Campo CPF */}
           <div className={styles.campo}>
             <label htmlFor="cpf">CPF</label>
             <input
@@ -107,18 +117,8 @@ function PassoUm() {
               <p className={styles.erro}>CPF inválido</p>
             )}
           </div>
-          
-
-          {/* Campo Produto */}
-          <div className={styles.campo}>
-            <label htmlFor="produto">Produto</label>
-            <select id="produto" className={styles.select}>
-              <option value="liminar">Liminar</option>
-              <option value="outro">Outro</option>
-            </select>
-          </div>
         </div>
-      </div>
+      
 
       <div className={styles.botao_container}>
         <button
@@ -130,6 +130,7 @@ function PassoUm() {
         >
           Prosseguir
         </button>
+      </div>
       </div>
     </section>
   );

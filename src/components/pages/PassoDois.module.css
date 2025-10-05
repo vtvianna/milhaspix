@@ -1,31 +1,30 @@
 .tiles {
+  font-family: 'DM Sans', sans-serif;
   width: 1216px;
-  height: 345px;
-  gap: 40px;
-  opacity: 1;
+  height: 480px;
+  gap: 40px; 
   display: flex;
   margin: 0 auto;
-  position: relative; 
-  align-items: flex-start; /* mantém alinhamento superior */
 }
 
+
 .container {
-  width: 640px;
+  width: 640px; 
   height: 308px;
   gap: 32px;
-  border: 1px solid #000;
+  border: 1px solid #E2E2E2;
   opacity: 1;
-  border-radius: 8px;
+  
 }
 
 .container_titulo {
+  box-sizing: border-box;
   align-items: center;
   display: flex;
-  width: 610px;
-  height: 20px;
+  width: 640px;
+  height: 62px;
   gap: 8px;
-  opacity: 1;
-  border-bottom: 1px solid #000;
+  border-bottom: 1px solid #E2E2E2;
   padding: 16px;
 }
 
@@ -34,15 +33,14 @@
   height: 73px;
   gap: 8px;
   opacity: 1;
-  border-bottom: 1px solid #000;
-  padding: 16px;
+  
+ 
 }
 
 .receber {
   width: 608px;
   height: 44px;
   gap: 12px;
-  opacity: 1;
   display: flex;
   align-items: center;
 }
@@ -55,9 +53,9 @@
   opacity: 1;
   padding: 12px 8px;
   border-radius: 56px;
-  border-width: 1px;
-  border-style: solid; 
-  border-color: #000;
+  border: 2px;
+   
+  border-color: #1E90FF;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -73,12 +71,19 @@
 }
 
 .badge {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-color: #DC2B2B1A;
   width: 262px;
   height: 30px;
-padding: 0.25rem 0.75rem;
-border: 1px solid #ccc;
-border-radius: 999px;
-font-size: 0.75rem;
+  gap: 8px;
+  transform: rotate(0deg);
+  opacity: 1;
+  border-radius: 40px;
+  padding-right: 16px;
+  padding-left: 16px;
+  white-space: nowrap;  
 }
 
 /* container dos selects */
@@ -88,14 +93,14 @@ font-size: 0.75rem;
   padding: 16px;
   display: flex;
   gap: 16px;
-  border-bottom: 1px solid #000;
+  
 }
 
 /* cada campo (label + select) */
 .campo {
-  flex: 1; /* divide igualmente */
-  display: flex;
-  flex-direction: column;
+  width: 298px;
+  height: 69px;
+  gap: 4px;
   font-size: 14px;
 }
 
@@ -105,11 +110,14 @@ font-size: 0.75rem;
 }
 /* select estilizado */
 .select {
-  height: 36px;
-  border: 1px solid #000;
-  border-radius: 6px;
-  padding: 0 8px;
-  font-size: 14px;
+   box-sizing: border-box;
+  padding: 10px 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  width: 298px;
+  height: 44px;
+  justify-content: space-between;
+  border-radius: 44px;
   cursor: pointer;
 }
 .inputWrapper {
@@ -118,11 +126,14 @@ font-size: 0.75rem;
 }
 
 .input {
-  padding: 8px 36px 8px 8px; /* adiciona espaço à direita pro ícone */
+   box-sizing: border-box;
+  padding: 10px 16px; 
   border: 1px solid #ccc;
   border-radius: 4px;
-  width: 100%;
-  box-sizing: border-box; 
+  width: 298px;
+  height: 44px;
+  justify-content: space-between;
+  border-radius: 44px; 
   
 }
 .inputIcon {
@@ -139,5 +150,124 @@ font-size: 0.75rem;
   font-size: 0.8rem;
   margin-top: 4px;
 }
+.span{
+font-family: 'DM Sans', sans-serif;
+  font-weight: 500;          /* Medium = 500 */
+  font-style: normal;        /* Medium não existe, o normal é usar normal/italic */
+  font-size: 14px;
+  line-height: 32px;         /* substitui leading-trim */
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+color: #DC2B2B;
 
 
+}
+.p{
+  font-family: 'DM Sans', sans-serif;
+  font-weight: 500;          /* Medium = 500 */
+  font-style: normal;        /* Medium não existe, o normal é usar normal/italic */
+  font-size: 14px;
+  line-height: 32px;         /* substitui leading-trim */
+  letter-spacing: 0;
+  text-align: center;
+  vertical-align: middle;
+  color:#DC2B2B;
+}
+
+.rankingContainer {
+  width: 248px;
+  height: 480px;
+  gap: 24px;
+  background: #f9f9f9;
+ 
+ 
+}
+
+.rankingList {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.rankingItem {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.6rem 0;
+  border-bottom: 1px solid #e0e0e0;
+  font-size: 16px;
+}
+
+.rankPosition {
+  color: #3b82f6;
+  font-weight: bold;
+  margin-right: 0.5rem;
+}
+
+.rankValue {
+  flex-grow: 1;
+  text-align: left;
+}
+
+.userTag {
+  color: #10b981;
+  font-weight: bold;
+}
+
+.userOffer {
+  background-color: #ecfdf5;
+  border-radius: 8px;
+  padding: 0.6rem;
+}
+
+.mileage_container{
+  width: 608px;
+  height: 24px;
+  gap: 12px;
+}
+
+.dinheiro{
+  width: 32;
+height: 32;
+gap: 8px;
+background-color: #DC2B2B1A;
+border-radius: 40px;
+
+}
+
+/* botão prosseguir (igual ao PassoTrês) */
+.botao_container {
+  width: 640px;
+  height: 42px;
+  position: absolute;
+  border-top: 1px;
+  justify-content: space-between;
+  padding-top: 16px;
+  padding-bottom: 16px;
+}
+
+.prosseguirBtn {
+  width: 142px;
+  height: 40px;
+  border-radius: 44px;
+  background: #ccc;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: not-allowed;
+  gap: 8px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-right: 24px;
+  padding-left: 24px;
+}
+
+.prosseguirBtn.ativo {
+  background-color: #1E90FF;
+  cursor: pointer;
+}
+
+.prosseguirBtn.ativo:hover {
+  background: #1E90FF;
+}

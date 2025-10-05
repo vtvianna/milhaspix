@@ -155,9 +155,7 @@ function PassoTres() {
             )}
           </div>
         </div>
-      </div>
-
-      <div className={styles.botao_container}>
+        <div className={styles.botao_container}>
         <button
           disabled={!programa || !cpfIsValid || !loginIsValid || !senhaIsValid || !telefoneIsValid}
           onClick={handleProsseguir}
@@ -170,6 +168,10 @@ function PassoTres() {
           Prosseguir
         </button>
       </div>
+
+      </div>
+
+      
     </section>
   );
 }
