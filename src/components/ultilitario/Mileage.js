@@ -7,6 +7,8 @@ function Mileage({ onRankingChange, onLoadingChange }) {
   const [ranking, setRanking] = useState([]);
   const suggestedMileage = "27.900";
 
+  const API_BASE = "https://api.milhaspix.com"; // ✅ URL absoluta corrigida
+
   const toggleSwitch = () => setIsEnabled(!isEnabled);
 
   const formatCurrency = (value) => {
@@ -43,8 +45,11 @@ function Mileage({ onRankingChange, onLoadingChange }) {
 
       if (onLoadingChange) onLoadingChange(true);
 
-      fetch(`/simulate-ranking?mile_value=${rawValue}`)
-        .then((res) => res.json())
+      fetch(`${API_BASE}/simulate-ranking?mile_value=${rawValue}`) // ✅ corrigido
+        .then((res) => {
+          if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+          return res.json();
+        })
         .then((data) => {
           const r = Array.isArray(data) ? data : data.ranking || [];
           setRanking(r);
@@ -69,7 +74,6 @@ function Mileage({ onRankingChange, onLoadingChange }) {
         isEnabled ? styles.wrapperAberto : styles.wrapperFechado
       }`}
     >
-      {/* Toggle principal */}
       <div className={styles.toggleSection}>
         <label className={styles.switch}>
           <input type="checkbox" checked={isEnabled} onChange={toggleSwitch} />
@@ -84,7 +88,6 @@ function Mileage({ onRankingChange, onLoadingChange }) {
         </span>
       </div>
 
-      {/* Campos visíveis quando ativado */}
       <div
         className={`${styles.inputContainer} ${
           isEnabled ? styles.visivel : ""
@@ -110,5 +113,4 @@ function Mileage({ onRankingChange, onLoadingChange }) {
 }
 
 export default Mileage;
-
 

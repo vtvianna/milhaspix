@@ -5,18 +5,20 @@ import styles from "./PassoDois.module.css";
 import debounce from "lodash.debounce";
 import { PiAirplaneInFlight, PiCurrencyDollar } from "react-icons/pi";
 import Mileage from "../ultilitario/Mileage";
-import Button from "../layout/Button"
+import Button from "../layout/Button";
 import ButtonVoltar from "../layout/ButtonVoltar";
 
 function PassoDois() {
   const [milhasInput, setMilhasInput] = useState("");
-  const [valorEmReais, setValorEmReais] = useState(""); // exibido, não editável
+  const [valorEmReais, setValorEmReais] = useState("");
   const [valorMilheiro, setValorMilheiro] = useState(null);
   const [ranking, setRanking] = useState([]);
   const [selected, setSelected] = useState("Imediato");
   const [loading, setLoading] = useState(false);
 
   const navigate = useNavigate();
+
+  const API_BASE = "https://api.milhaspix.com"; // ✅ URL absoluta para funcionar no Vercel
 
   // === FORMATADORES ===
   const formatMilhas = (value) => {
@@ -28,8 +30,7 @@ function PassoDois() {
     const valorDigitado = e.target.value.replace(/\D/g, "");
     setMilhasInput(formatMilhas(valorDigitado));
 
-    // 🔹 Converte automaticamente milhas → R$
-    const valorPorMilheiro = 16.0; // 💰 valor base por milheiro
+    const valorPorMilheiro = 16.0;
     const milhas = parseInt(valorDigitado || 0, 10);
     const total = (milhas / 1000) * valorPorMilheiro;
 
@@ -49,28 +50,28 @@ function PassoDois() {
 
   // === FETCH DE RANKING ===
   const fetchRanking = useCallback(
-  debounce(async (valor) => {
-    try {
-      if (!valor || isNaN(Number(valor))) return;
-      setLoading(true);
+    debounce(async (valor) => {
+      try {
+        if (!valor || isNaN(Number(valor))) return;
+        setLoading(true);
 
-      const url = `/api/ranking?mile_value=${valor}`; // ✅ agora com aspas
-      console.log("🔹 Chamando API:", url);
+        const url = `${API_BASE}/simulate-ranking?mile_value=${valor}`; // ✅ Corrigido
+        console.log("🔹 Chamando API:", url);
 
-      const res = await fetch(url);
-      const data = await res.json();
+        const res = await fetch(url);
+        if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
+        const data = await res.json();
 
-      // Aceita retorno com ou sem .ranking
-      setRanking(Array.isArray(data) ? data : data.ranking || []);
-    } catch (err) {
-      console.error("Erro ao buscar ranking:", err);
-      setRanking([]);
-    } finally {
-      setLoading(false);
-    }
-  }, 500),
-  []
-);
+        setRanking(Array.isArray(data) ? data : data.ranking || []);
+      } catch (err) {
+        console.error("Erro ao buscar ranking:", err);
+        setRanking([]);
+      } finally {
+        setLoading(false);
+      }
+    }, 500),
+    []
+  );
 
   useEffect(() => {
     if (valorMilheiro && !isNaN(valorMilheiro)) {
@@ -79,7 +80,6 @@ function PassoDois() {
     }
   }, [valorMilheiro, fetchRanking]);
 
-  // === NAVEGAÇÃO ===
   const handleProsseguir = () => {
     if (valorMilheiro && milhasInput) {
       navigate("/passotres");
@@ -92,9 +92,7 @@ function PassoDois() {
     <section className={styles.tiles}>
       <Stepper currentStep={1} />
 
-      {/* CONTAINER PRINCIPAL */}
       <div className={styles.container}>
-        {/* Título */}
         <div className={styles.container_titulo}>
           <p className={styles.titulo}>
             <span className={styles.span_titulo}>02. </span> Cadastro da oferta
@@ -106,14 +104,14 @@ function PassoDois() {
             </p>
           </div>
         </div>
-        <div className={`${styles.badge} ${styles.badgeMobile}`}>
-  <p className={styles.p}>
-    Escolha entre <span className={styles.span}>R$ 14,00</span> e{" "}
-    <span className={styles.span}>R$ 16,56</span> por milheiro
-  </p>
-</div>
 
-        {/* Seção de recebimento */}
+        <div className={`${styles.badge} ${styles.badgeMobile}`}>
+          <p className={styles.p}>
+            Escolha entre <span className={styles.span}>R$ 14,00</span> e{" "}
+            <span className={styles.span}>R$ 16,56</span> por milheiro
+          </p>
+        </div>
+
         <div className={styles.container_receber}>
           <div>Quero receber</div>
           <div className={styles.receber}>
@@ -133,9 +131,7 @@ function PassoDois() {
           </div>
         </div>
 
-        {/* Campos de entrada */}
         <div className={styles.container_campos}>
-          {/* Milhas ofertadas */}
           <div className={styles.campo}>
             <label htmlFor="milhasOfertadas">Milhas ofertadas</label>
             <div className={styles.inputWrapper}>
@@ -151,7 +147,6 @@ function PassoDois() {
             </div>
           </div>
 
-          {/* Valor em R$ (somente leitura) */}
           <div className={styles.campo}>
             <label>Valor em R$</label>
             <div className={styles.valorDisplay}>
@@ -163,9 +158,11 @@ function PassoDois() {
           </div>
         </div>
 
-        {/* Mileage opcional */}
         <div className={styles.mileage_container}>
-          <Mileage onRankingChange={setRanking} onLoadingChange={setLoading} />
+          <Mileage
+            onRankingChange={setRanking}
+            onLoadingChange={setLoading}
+          />
         </div>
 
         {loading && (
@@ -173,20 +170,13 @@ function PassoDois() {
             Buscando ranking...
           </div>
         )}
+      </div>
 
-    
+      <div className={styles.botao_container}>
+        <ButtonVoltar texto="Voltar" to="/passoum" />
+        <Button texto="Prosseguir" to="/passotres" onValidar={handleProsseguir} />
+      </div>
 
-</div>
-
-   {/* 🔹 bloco de botões no final do container */}
-    <div className={styles.botao_container}>
-      <ButtonVoltar texto="Voltar" to="/passoum" />
-      
-      <Button texto="Prosseguir" to="/passotres" onValidar={handleProsseguir} />
-    </div>
-      
-
-      {/* === RANKING LATERAL === */}
       <div className={styles.rankingContainer}>
         <div className={styles.ranking_titulo}>
           <h3>Média de milhas</h3>
@@ -237,19 +227,9 @@ function PassoDois() {
             )}
           </ul>
         </div>
-
-        <div className={styles.ranking_recebe}>
-          <p>Recebe até:</p>
-        </div>
       </div>
     </section>
   );
 }
 
 export default PassoDois;
-
-
-
-
-
-
