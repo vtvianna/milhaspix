@@ -49,28 +49,28 @@ function PassoDois() {
 
   // === FETCH DE RANKING ===
   const fetchRanking = useCallback(
-    debounce(async (valor) => {
-      try {
-        if (!valor || isNaN(Number(valor))) return;
-        setLoading(true);
+  debounce(async (valor) => {
+    try {
+      if (!valor || isNaN(Number(valor))) return;
+      setLoading(true);
 
-        const url = `/api/ranking?mile_value=${valor}`;
+      const url = `/api/ranking?mile_value=${valor}`; // ✅ agora com aspas
+      console.log("🔹 Chamando API:", url);
 
-        console.log("🔹 Chamando API:", url);
+      const res = await fetch(url);
+      const data = await res.json();
 
-        const res = await fetch(url);
-        const data = await res.json();
-
-        setRanking(Array.isArray(data) ? data : data.ranking || []);
-      } catch (err) {
-        console.error("Erro ao buscar ranking:", err);
-        setRanking([]);
-      } finally {
-        setLoading(false);
-      }
-    }, 500),
-    []
-  );
+      // Aceita retorno com ou sem .ranking
+      setRanking(Array.isArray(data) ? data : data.ranking || []);
+    } catch (err) {
+      console.error("Erro ao buscar ranking:", err);
+      setRanking([]);
+    } finally {
+      setLoading(false);
+    }
+  }, 500),
+  []
+);
 
   useEffect(() => {
     if (valorMilheiro && !isNaN(valorMilheiro)) {
