@@ -7,6 +7,7 @@ import concluidoImg from '../../img/concluido.png';
 function PassoQuatro() {
   const navigate = useNavigate();
 
+  //comentando
   return (
     <section className={styles.pageWrapper}>
       <div className={styles.colunaStepper}>
