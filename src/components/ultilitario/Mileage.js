@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import styles from "./Mileage.module.css";
 
-function Mileage() {
+function Mileage({ onRankingChange, onLoadingChange }) {
   const [isEnabled, setIsEnabled] = useState(false);
   const [mileage, setMileage] = useState("R$ 10,00");
   const [ranking, setRanking] = useState([]);
@@ -9,7 +9,6 @@ function Mileage() {
 
   const toggleSwitch = () => setIsEnabled(!isEnabled);
 
-  // === Função para formatar valor em R$ ===
   const formatCurrency = (value) => {
     const onlyDigits = value.replace(/\D/g, "");
     const number = parseFloat(onlyDigits) / 100;
@@ -20,7 +19,6 @@ function Mileage() {
     });
   };
 
-  // === Função para remover formatação e converter para número ===
   const unformatCurrency = (value) => {
     if (!value) return "";
     const cleaned = value
@@ -31,13 +29,11 @@ function Mileage() {
     return isNaN(number) ? "" : number.toFixed(2);
   };
 
-  // === Atualiza o input com máscara R$ ===
   const handleInputChange = (e) => {
     const formatted = formatCurrency(e.target.value);
     setMileage(formatted);
   };
 
-  // === Chama a API sempre que o valor muda (com debounce de 500ms) ===
   useEffect(() => {
     if (!isEnabled) return;
 
@@ -45,27 +41,35 @@ function Mileage() {
       const rawValue = unformatCurrency(mileage);
       if (!rawValue || isNaN(rawValue)) return;
 
-      console.log("🔹 Valor enviado para API:", rawValue);
-      console.log(
-        "🔹 URL completa:",
-        `https://api.milhaspix.com/simulate-ranking?mile_value=${rawValue}`
-      );
+      if (onLoadingChange) onLoadingChange(true);
 
       fetch(`/simulate-ranking?mile_value=${rawValue}`)
         .then((res) => res.json())
         .then((data) => {
-          console.log("🔹 Retorno da API:", data);
-          setRanking(Array.isArray(data) ? data : data.ranking || []);
+          const r = Array.isArray(data) ? data : data.ranking || [];
+          setRanking(r);
+          if (onRankingChange) onRankingChange(r);
         })
-        .catch((err) => console.error("Erro ao buscar ranking:", err));
-    }, 500); // debounce de 500ms
+        .catch((err) => {
+          console.error("Erro ao buscar ranking:", err);
+          setRanking([]);
+          if (onRankingChange) onRankingChange([]);
+        })
+        .finally(() => {
+          if (onLoadingChange) onLoadingChange(false);
+        });
+    }, 500);
 
     return () => clearTimeout(timeout);
-  }, [mileage, isEnabled]);
+  }, [mileage, isEnabled, onRankingChange, onLoadingChange]);
 
   return (
-    <div className={styles.wrapper}>
-      {/* Toggle do recurso */}
+    <div
+      className={`${styles.wrapper} ${
+        isEnabled ? styles.wrapperAberto : styles.wrapperFechado
+      }`}
+    >
+      {/* Toggle principal */}
       <div className={styles.toggleSection}>
         <label className={styles.switch}>
           <input type="checkbox" checked={isEnabled} onChange={toggleSwitch} />
@@ -80,10 +84,13 @@ function Mileage() {
         </span>
       </div>
 
-      {/* Quando ativado */}
-      {isEnabled && (
-        <div className={styles.inputContainer}>
-          {/* Campo de input com máscara */}
+      {/* Campos visíveis quando ativado */}
+      <div
+        className={`${styles.inputContainer} ${
+          isEnabled ? styles.visivel : ""
+        }`}
+      >
+        {isEnabled && (
           <div className={styles.inputSection}>
             <input
               type="text"
@@ -96,30 +103,12 @@ function Mileage() {
               <strong>{suggestedMileage}</strong>
             </div>
           </div>
-
-          {/* Ranking lateral */}
-          <div className={styles.rankingSection}>
-            <h4>Ranking</h4>
-            <ul>
-              {ranking.length > 0 ? (
-                ranking.map((item) => (
-                  <li key={item.position}>
-                    <strong>
-                      R$ {item.mile_value.toFixed(2).replace(".", ",")}
-                    </strong>{" "}
-                    – {item.description}
-                  </li>
-                ))
-              ) : (
-                <li>Nenhum dado disponível.</li>
-              )}
-            </ul>
-          </div>
-        </div>
-      )}
+        )}
+      </div>
     </div>
   );
 }
 
 export default Mileage;
+
 

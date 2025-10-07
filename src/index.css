@@ -1,9 +1,6 @@
-body{
-    width: 1440px;
-    height: 800px;
-    display: flex;
-    flex-direction: column;
-    gap: 32px;
-    opacity: 1;
-    margin: 0;
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  
 }

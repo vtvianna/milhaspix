@@ -1,65 +1,169 @@
 .stepperContainer {
-  width: 248px;
-  height: 345px;
-  font-family: Arial, sans-serif;
-  background-color: white;
-  
-  box-sizing: border-box;
-  height: fit-content;
+   display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 220px;          /* 🔹 reduz largura do Stepper */
+  height: auto;
+  font-family: 'DM Sans';
+  color: #2E3D50;
+  margin: 0;   
 }
 
+/* cada linha do step (texto + ícone) */
 .stepItem {
   display: flex;
   align-items: flex-start;
   position: relative;
-  margin-bottom: 30px;
+  border-radius: 12px;
+  
+ 
+  transition: background-color 0.3s ease;
 }
 
-.stepIcon {
+/* destaque quando ativo */
+.activeStepItem {
+  background-color: #f7f9fb;
+}
+
+/* wrapper do ícone e linhas - controla o espaçamento vertical */
+.stepIconWrapper {
   position: relative;
-  margin-right: 20px;
+  margin-right: 16px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 32px; /* distância entre centros dos círculos */
 }
 
-.iconActive {
-  color: #007bff;
-  font-size: 24px;
+/* remover margem no último para não criar espaço extra */
+.stepItem:last-child .stepIconWrapper {
+  margin-bottom: 0;
 }
 
-.iconInactive {
-  color: #ccc;
-  font-size: 24px;
-}
-
-.verticalLine {
+/* linhas que conectam os círculos */
+.line {
   position: absolute;
-  top: 25px;
-  left: 12px;
+  left: 50%;
   width: 2px;
-  height: 30px;
-  background-color: #2b2929;
+  transform: translateX(-50%);
+  z-index: 1;
+  background-color: #F0F0F0; /* cor padrão */
+  border-radius: 1px;
 }
 
+/* a parte superior da linha que entra no círculo de cima */
+.lineTop {
+  top: -16px;   /* sobe 16px acima do topo do círculo (meia altura) */
+  height: 16px;
+}
+
+/* a parte inferior da linha que sai do círculo para baixo */
+.lineBottom {
+  top: 32px;    /* começa logo abaixo do círculo (círculo tem 32px de altura) */
+  height: 16px;
+}
+
+/* quando ativa (concluída), fica azul */
+.lineActive {
+  background-color: #2d8cff;
+}
+
+/* círculo do passo */
+.stepCircle {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 0.96px solid #1E90FF;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  z-index: 2; /* sobre a linha */
+  transition: all 0.25s ease;
+}
+
+/* ponto interno quando ativo */
+.innerDotActive {
+  width: 10px;
+  height: 10px;
+  background-color: #2d8cff;
+  border-radius: 50%;
+}
+
+/* ponto interno quando concluído (branco) */
+.innerDotCompleted {
+  width: 10px;
+  height: 10px;
+  background-color: #ffffff;
+  border-radius: 50%;
+  box-shadow: 0 0 0 1px rgba(0,0,0,0.03) inset;
+}
+
+/* estados dos círculos */
+.activeCircle {
+  border-color: #2d8cff;
+  background-color: #fff;
+}
+
+.completedCircle {
+  background-color: #2d8cff;
+  border-color: #2d8cff;
+}
+
+.inactiveCircle {
+  background-color: #fff;
+  border-color: #e0e0e0;
+}
+
+/* conteúdo textual ao lado */
 .stepContent {
-  color: #ccc;
-}
-
-.stepContent.active .stepTitle {
-  font-weight: bold;
-  color: #007bff;
-}
-
-.stepContent.active .stepSubtitle {
-  color: #555;
+  width: 187px;
+  display: flex;
+  flex-direction: column;
+  line-height: 1.3;
 }
 
 .stepTitle {
-  font-size: 16px;
+  font-weight: 600;
+  font-size: 15px;
+  margin-bottom: 4px;
 }
 
 .stepSubtitle {
-  font-size: 14px;
-  margin-top: 5px;
+  font-size: 13px;
 }
+
+/* cores dos textos por estado */
+.activeText .stepTitle {
+  color: #1e1e1e;
+}
+
+.activeText .stepSubtitle {
+  color: #6c757d;
+}
+
+.completedText .stepTitle,
+.completedText .stepSubtitle {
+  color: #2d8cff;
+}
+
+.inactiveText .stepTitle,
+.inactiveText .stepSubtitle {
+  color: #d0d0d0;
+}
+
+/* responsivo */
+@media (max-width: 768px) {
+  .stepperContainer {
+    width: 100%;
+    align-items: center;
+  }
+}
+
+
+
+
 
 
 

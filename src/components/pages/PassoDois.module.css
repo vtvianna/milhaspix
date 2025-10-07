@@ -1,23 +1,48 @@
+body{
+font-family: 'DM Sans', sans-serif;
+  width: 1440px;
+height: 800px;
+gap: 32px;
+overflow-x: hidden;
+}
+
 .tiles {
-  font-family: 'DM Sans', sans-serif;
+   flex-wrap: wrap;
+   position: relative;
+  font-family: 'DM Sans';
   width: 1216px;
-  height: 480px;
-  gap: 40px; 
   display: flex;
+  gap: 40px;
   margin: 0 auto;
+  align-items: flex-start; /* 🔹 alinha pelo topo */
+
 }
 
 
 .container {
-  width: 640px; 
-  height: 308px;
+  width: 640px;
+  min-height: 246px;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   gap: 32px;
   border: 1px solid #E2E2E2;
-  opacity: 1;
-  
+  border-radius: 8px;
+  padding-bottom: 16px;
+  transition: all 0.3s ease;
+  overflow: visible;
+}
+
+.container_card{
+ gap: 24px;
+  width: 640px ;
+  height: 246px;
+  padding: 16px;
 }
 
 .container_titulo {
+  
   box-sizing: border-box;
   align-items: center;
   display: flex;
@@ -28,21 +53,70 @@
   padding: 16px;
 }
 
+
+
+.titulo{
+  font-family: 'DM Sans';
+font-weight: 500; 
+font-style: normal;
+font-size: 1.125rem; 
+line-height: 1.75rem; 
+letter-spacing: 0;
+  color: #2E3D50;
+  font-family: 'DM Sans';
+}
+
+.titulo_receber{
+  font-family: 'DM Sans';
+  width: 110px;
+height: 21px;
+font-style: Medium;
+font-size: 16px;
+line-height: 130%;
+letter-spacing: 0%;
+vertical-align: middle;
+}
+
+.titulo_ranking{
+  width: 146px;
+  height: 21px;
+ font-family: 'DM Sans';
+font-style: Medium;
+font-size: 16px;
+line-height: 130%;
+letter-spacing: 0%;
+}
+
+.p_ranking{
+font-family: 'DM Sans', sans-serif;
+font-weight: 400px;
+font-size: 12px;
+line-height: 160%;
+letter-spacing: 0%;
+
+}
+
 .container_receber {
-  width: 608px;
-  height: 73px;
+ color: #2E3D50;
+  width: 100%;
+  max-width: 608px;
+  height: auto;
   gap: 8px;
-  opacity: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start; 
+  margin: 0 auto;
   
- 
+  
 }
 
 .receber {
-  width: 608px;
-  height: 44px;
-  gap: 12px;
   display: flex;
   align-items: center;
+  justify-content: center; 
+  gap: 12px;
+  width: 100%;
+  flex-wrap: wrap; 
 }
 
 /* botões das companhias */
@@ -50,11 +124,10 @@
   width: 143px;
   height: 44px;
   gap: 8px;
-  opacity: 1;
+ 
   padding: 12px 8px;
   border-radius: 56px;
   border: 2px;
-   
   border-color: #1E90FF;
   display: flex;
   justify-content: center;
@@ -70,38 +143,49 @@
   background-color: #e6f0ff;
 }
 
+
 .badge {
+ 
   display: flex;
-  justify-content: center;
+  justify-content: flex-end; 
   align-items: center;
   background-color: #DC2B2B1A;
-  width: 262px;
+  max-width: 100%;
   height: 30px;
   gap: 8px;
-  transform: rotate(0deg);
-  opacity: 1;
   border-radius: 40px;
   padding-right: 16px;
   padding-left: 16px;
   white-space: nowrap;  
+  margin-left: auto;
 }
 
 /* container dos selects */
 .container_campos {
-  width: 608px;
-  height: 69px;
-  padding: 16px;
+  width: 100%;
+  max-width: 608px;
   display: flex;
+  justify-content: center; /* 🔹 Centraliza os dois inputs */
+  align-items: center;
   gap: 16px;
+  margin: 0 auto;
   
 }
 
 /* cada campo (label + select) */
 .campo {
+  font-family: 'DM Sans', sans-serif;
+font-weight: 500; 
+font-style: normal; 
+font-size: 16px;
+line-height: 130%; 
+letter-spacing: 0;
+vertical-align: middle; 
   width: 298px;
   height: 69px;
   gap: 4px;
-  font-size: 14px;
+  
+  color: #2E3D50;
 }
 
 .campo label {
@@ -127,9 +211,12 @@
 
 .input {
    box-sizing: border-box;
-  padding: 10px 16px; 
+   padding-top: 10px; 
+   padding-right: 14px;
+    padding-bottom: 10px;
+   padding-left: 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 44px;
   width: 298px;
   height: 44px;
   justify-content: space-between;
@@ -152,11 +239,11 @@
 }
 .span{
 font-family: 'DM Sans', sans-serif;
-  font-weight: 500;          /* Medium = 500 */
+  font-weight: 700px;          /* Medium = 500 */
   font-style: normal;        /* Medium não existe, o normal é usar normal/italic */
   font-size: 14px;
   line-height: 32px;         /* substitui leading-trim */
-  letter-spacing: 0;
+  letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
 color: #DC2B2B;
@@ -164,6 +251,7 @@ color: #DC2B2B;
 
 }
 .p{
+  max-width: 100%;
   font-family: 'DM Sans', sans-serif;
   font-weight: 500;          /* Medium = 500 */
   font-style: normal;        /* Medium não existe, o normal é usar normal/italic */
@@ -176,18 +264,25 @@ color: #DC2B2B;
 }
 
 .rankingContainer {
-  width: 248px;
-  height: 480px;
-  gap: 24px;
-  background: #f9f9f9;
- 
- 
+ width: 248px;
+  
+  border-radius: 8px;
+  padding: 16px;
+  display: flex;
+  flex-direction: column; /* 🔹 empilha o título e a lista */
+  align-items: flex-start;
+  gap: 16px; /* 🔹 espaço entre título e lista */
+  height: auto; /* 🔹 deixa crescer conforme o conteúdo */
 }
 
 .rankingList {
   list-style: none;
-  padding: 0;
-  margin: 0;
+  width: 100%;
+ 
+  border: 1px solid #E2E2E2;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .rankingItem {
@@ -197,34 +292,48 @@ color: #DC2B2B;
   padding: 0.6rem 0;
   border-bottom: 1px solid #e0e0e0;
   font-size: 16px;
+  background-color: #fff;
+}
+
+.ranking_titulo{
+width: 248px;
+height: 110px;
+padding: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  border: 1px solid #E2E2E2;
+ border-radius: 8px ;
 }
 
 .rankPosition {
-  color: #3b82f6;
+  color: #1E90FF;
   font-weight: bold;
   margin-right: 0.5rem;
+  
 }
 
 .rankValue {
   flex-grow: 1;
   text-align: left;
+  
 }
 
-.userTag {
-  color: #10b981;
-  font-weight: bold;
-}
 
 .userOffer {
-  background-color: #ecfdf5;
+  background-color: #fff;
   border-radius: 8px;
   padding: 0.6rem;
 }
 
 .mileage_container{
-  width: 608px;
-  height: 24px;
-  gap: 12px;
+  
+  width: 100%;
+  display: block; /* 🔹 garante que ocupe espaço vertical */
+  margin-top: 16px;
+  overflow: visible; /* 🔹 deixa o conteúdo expandir */
+  transition: max-height 0.3s ease;
+  padding-left: 16px;
 }
 
 .dinheiro{
@@ -245,6 +354,7 @@ border-radius: 40px;
   justify-content: space-between;
   padding-top: 16px;
   padding-bottom: 16px;
+  
 }
 
 .prosseguirBtn {
@@ -270,4 +380,361 @@ border-radius: 40px;
 
 .prosseguirBtn.ativo:hover {
   background: #1E90FF;
+}
+
+.span_titulo {
+  color: #1E90FF;
+  font-weight: 500;
+}
+
+.titulo{
+  font-family: 'DM Sans', sans-serif;
+font-weight: 500; 
+font-style: normal;
+font-size: 1.125rem; 
+line-height: 1.75rem; 
+letter-spacing: 0;
+  color: #2E3D50;
+  font-family: 'DM Sans';
+}
+
+.ranking_recebe{
+width: 248px;
+height: 75px;
+
+}
+
+.valorDisplay {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  border: 1px solid #ccc;
+  border-radius: 44px;
+  height: 44px;
+  padding: 0 16px;
+  background-color: #f8f8f8;
+}
+
+.iconValor {
+  color: #1e90ff;
+  margin-right: 8px;
+  font-size: 18px;
+}
+
+.valorTexto {
+  font-weight: 600;
+  color: #333;
+  font-size: 15px;
+}
+
+/* Ranking - destaque da posição do usuário */
+.userRankPosition {
+  color: #12A19A; 
+  font-weight: 700;
+}
+
+.userTag {
+  background-color: #12A19A1A;
+  color: #12A19A;
+  font-weight: 600;
+  border-radius: 12px;
+  padding: 2px 8px;
+  margin-left: 8px;
+  font-size: 12px;
+}
+
+
+.buttonContainer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  background: white;
+  border-top: 1px solid #eee;
+  padding: 16px 40px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 10;
+}
+
+.btn {
+  width: 160px;
+  height: 44px;
+  border: none;
+  border-radius: 44px;
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.voltarBtn {
+  background-color: #999;
+}
+
+.voltarBtn:hover {
+  background-color: #777;
+  transform: scale(1.02);
+}
+
+.prosseguirBtn {
+  background-color: #1e90ff;
+}
+
+.prosseguirBtn:hover {
+  background-color: #187bcd;
+  transform: scale(1.02);
+}
+
+.botao_container {
+  width: 640px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-top: 24px;
+  padding-top: 20px;
+ 
+
+  /* 🔹 garante que o botão fique ABAIXO e não sobreponha nada */
+  order: 99;
+  position: relative;
+  z-index: 2;
+}
+
+.textoTermos {
+  flex: 1;
+  text-align: center;
+  font-size: 14px;
+  color: #666;
+}
+
+.linkTermos {
+  color: #00bfff;
+  text-decoration: none;
+}
+
+.linkTermos:hover {
+  text-decoration: underline;
+}
+.badgeMobile {
+  display: none;
+}
+
+@media (max-width: 768px) {
+ .tiles > :first-child {
+    display: none !important;
+  }
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden; /* 🔹 impede scroll lateral */
+  }
+
+  .tiles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+   width: 340px;
+   height: 445px;
+    min-height: 100vh;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 🔹 evita somar margens/paddings */
+  }
+
+  .container {
+    background: #fff;
+    width: 90%;              /* 🔹 muda de 340px para 90% da tela */
+    max-width: 340px;        /* 🔹 limite máximo igual ao design */
+    min-height: 465px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+    margin: 0 auto;          /* 🔹 centraliza */
+    box-sizing: border-box;
+  }
+  .container_titulo {
+    width: 100%;
+    flex-direction: column;
+    align-items: flex-start;
+    border-bottom: none;
+    gap: 4px;
+    padding: 8px 0;
+  }
+
+  .titulo {
+    font-size: 16px;
+    line-height: 22px;
+  }
+
+  .container_receber {
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+  }
+
+  .receber {
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+  }
+
+  .programaBtn {
+    width: 45%;
+    height: 40px;
+    font-size: 14px;
+  }
+
+  .container_campos {
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+    width: 100%;
+  }
+
+  .campo {
+    width: 100%;
+  }
+
+  .input,
+  .select {
+    width: 100%;
+    height: 44px;
+  }
+
+   .mileage_container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 6px; /* espaçamento entre o valor e o badge */
+  }
+
+  /* Badge abaixo do valor */
+  .badge {
+    order: 2; /* 🔹 faz ele vir abaixo do texto de valor */
+    align-self: flex-start;
+    margin-top: 4px;
+    background: #f8f8f8;
+    color: #333;
+    border-radius: 8px;
+    padding: 6px 10px;
+    font-size: 13px;
+    font-weight: 500;
+  }
+
+  /* Ajusta o valor em R$ */
+  .mileage_value {
+    order: 1; /* 🔹 mantém o texto de valor acima */
+  }
+
+
+  /* Ranking passa para baixo */
+  
+  
+
+  
+
+  
+
+  .rankingContainer {
+    width: 100%;
+    max-width: 340px;
+    margin: 24px auto 0 auto;
+    padding: 0;
+    border: none;
+    background: transparent;
+    box-shadow: none;
+  }
+
+  .rankingTitulo {
+    text-align: left;
+    font-size: 15px;
+    font-weight: 600;
+    color: #0b1b2b;
+    margin-bottom: 12px;
+    padding-left: 8px;
+  }
+
+  .rankingList {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .rankingCard {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 12px 16px;
+    width: 100%;
+    box-shadow: 0px 4px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    justify-content: center;
+  }
+
+  .rankingHeader {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .programaNome {
+    font-size: 13px;
+    color: #555;
+    font-weight: 500;
+  }
+
+  .valor {
+    font-size: 18px;
+    font-weight: 700;
+    color: #0066ff;
+  }
+
+  .recebeTexto {
+    margin-top: 4px;
+    font-size: 13px;
+    color: #666;
+    text-align: left;
+  }
+
+  /* Botões fixos no rodapé */
+  .botao_container {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    max-width: 100%;
+    background: white;
+    border-top: 1px solid #eaeaea;
+    padding: 12px 20px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    z-index: 10;
+  }
+
+  .botao_container button {
+    flex: 1;
+    margin: 0 4px;
+    height: 44px;
+  }
+   .badgeDesktop {
+    display: none;   /* esconde o badge do título */
+  }
+  .badgeMobile {
+    display: flex;   /* mostra o badge abaixo do valor */
+  }
 }

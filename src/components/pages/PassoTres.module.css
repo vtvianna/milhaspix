@@ -1,18 +1,28 @@
+/* ===== SEU CSS ORIGINAL MANTIDO ===== */
 
+body {
+  font-family: 'DM Sans', sans-serif;
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+}
 
 .tiles {
-  font-family: 'DM Sans', sans-serif;
-  width: 1216px;
-  height: 345px;
-  gap: 40px; 
-  display: flex;
-  margin: 0 auto;
- 
-  
+   display: flex;
+  justify-content: center;        /* 🔹 Centraliza Stepper + Container */
+  align-items: flex-start;
+  gap: 80px;                      /* 🔹 Espaço entre Stepper e Formulário */
+  width: 100%;
+  max-width: 1200px;
+  margin: 40px auto;              /* 🔹 Centraliza na tela */
+  padding: 0 20px;                /* 🔹 Espaço lateral no mobile */
+  box-sizing: border-box;
 }
 
 .container {
-  width: 640px; 
+  width: 640px;
   height: 260px;
   gap: 32px;
   border: 1px solid #E2E2E2;
@@ -20,48 +30,58 @@
 }
 
 .container_titulo {
+  padding: 16px;
   box-sizing: border-box;
   width: 640px;
   height: 60px;
-  border: 1px solid #E2E2E2;
   gap: 8px;
- padding-right: 16px;
-padding-left: 16px;
-
+  border-bottom: 1px solid #E2E2E2;
+  display: flex;
+  align-items: center;
 }
 
 
 
+.titulo{
+  font-family: 'DM Sans', sans-serif;
+font-weight: 500; 
+font-style: normal;
+font-size: 1.125rem; 
+line-height: 1.75rem; 
+letter-spacing: 0;
+  color: #2E3D50;
+  font-family: 'DM Sans';
+}
+.span_titulo {
+  color: #1E90FF;
+  font-weight: 500;
+}
 
 
-/* botão prosseguir */
+
+/* =================== BOTÃO =================== */
 .botao_container {
-  width: 640px;
-  height: 42px;
- position: absolute;
- border-top: 1px;
-  
-  justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
- 
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+  padding: 16px;
+  position: relative; 
 }
 
 .prosseguirBtn {
-   width: 142px;              
-  height: 40px;              
-  border-radius: 44px;       
-  background: #ccc;          
+  width: 142px;
+  height: 40px;
+  border-radius: 44px;
+  background: #ccc;
   color: #fff;
   font-size: 14px;
   font-weight: bold;
   cursor: not-allowed;
-  gap:8px;
+  gap: 8px;
   padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 24px;
   padding-left: 24px;
-
 }
 
 .prosseguirBtn.ativo {
@@ -73,29 +93,27 @@ padding-left: 16px;
   background: #1E90FF;
 }
 
-
+/* =================== CAMPOS =================== */
 .container_campos {
-   box-sizing: border-box;
+  box-sizing: border-box;
   display: flex;
   width: 640px;
   height: 97px;
-  gap:4px;
+  gap: 4px;
   padding-top: 12px;
-  
-padding-right: 16px;
-padding-bottom: 16px;
-padding-left: 16px;
+  padding-right: 16px;
+  padding-bottom: 16px;
+  padding-left: 16px;
 }
 
-/* cada campo (label + select) */
 .campo {
   width: 298px;
   height: 76px;
-    box-sizing: border-box;
+  box-sizing: border-box;
   padding-bottom: 10px;
   padding-right: 16px;
   padding-left: 16px;
-  flex: 1; /* divide igualmente */
+  flex: 1;
   display: flex;
   flex-direction: column;
   font-size: 14px;
@@ -104,25 +122,268 @@ padding-left: 16px;
 .campo label {
   margin-bottom: 4px;
   font-weight: bold;
-  
 }
 
-/* select estilizado */
+/* INPUT PADRÃO */
 
 
-.input {
-   box-sizing: border-box;
-  padding: 10px 16px; 
+/* ======= CAMPO TELEFONE COM BANDEIRA ======= */
+.telefoneWrapper {
+  display: flex;
+  align-items: center;
   border: 1px solid #ccc;
-  border-radius: 4px;
-  width: 298px;
-  height: 44px;
-  justify-content: space-between;
   border-radius: 44px;
+  overflow: hidden;
+  height: 44px;
+  width: 298px;
+}
+
+.prefixo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f9f9f9;
+  padding: 0 10px;
+  height: 100%;
+  font-size: 14px;
+  color: #333;
+  border-right: 1px solid #ddd;
+}
+
+.bandeira {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.inputTelefone {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 0 16px;
+  font-size: 14px;
+  height: 100%;
+  border-radius: 0 44px 44px 0;
+}
+
+.inputTelefone:focus {
+  outline: none;
 }
 
 .erro {
   color: red;
   font-size: 0.8rem;
   margin-top: 4px;
+}
+
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Ícone à esquerda do CPF */
+.iconLeft {
+  position: absolute;
+  left: 14px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 24px;
+  width: 24px;
+}
+
+/* Ajuste de padding no input de CPF */
+.inputCpf {
+  padding-left: 44px !important;
+}
+
+/* Ícone olho (senha) */
+.iconButton {
+  position: absolute;
+  right: 10px;
+  height: 28px;
+  width: 36px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  padding: 0;
+}
+
+.iconButton:focus {
+  outline: none;
+}
+
+/* Wrapper para inserir ícone no CPF */
+.inputWrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+/* Ícone à direita dentro do input de CPF */
+.iconCpf {
+  position: absolute;
+  right: 14px;
+  color: #6b7280;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+
+
+/* Campo telefone com bandeira */
+.telefoneWrapper {
+  display: flex;
+  align-items: center;
+  border: 1px solid #ccc;
+  border-radius: 44px;
+  overflow: hidden;
+  height: 44px;
+  width: 298px;
+}
+
+.prefixo {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background-color: #f9f9f9;
+  padding: 0 10px;
+  height: 100%;
+  font-size: 14px;
+  color: #333;
+  border-right: 1px solid #ddd;
+}
+
+.bandeira {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+  display: flex;
+  align-items: center;
+}
+
+/* Todos os inputs iguais */
+.input {
+  width: 298px;
+  height: 44px;
+  border: 1px solid #ccc;
+  border-radius: 44px;
+  padding: 10px 40px 10px 16px; /* 🔹 padding padrão */
+  font-size: 16px;
+  color: #2e3d50;
+  background-color: #e2e2e2;
+  outline: none;
+  box-sizing: border-box;
+  transition: border-color 0.2s, background-color 0.2s;
+}
+
+.input:focus {
+  background-color: #fff;
+  border-color: #1E90FF;
+}
+
+/* Ícones dentro dos inputs */
+.iconInput {
+ position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #1e90ff;
+  font-size: 18px;
+  pointer-events: none;
+}
+
+.iconWhats {
+  color: #25D366; /* verde WhatsApp */
+}
+
+/* Bandeira e +55 dentro do input */
+.prefixoDentro {
+  position: absolute;
+  left: 16px;
+  top: 50%;
+  transform: translateY(-50%);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 6px 10px;
+  border-radius: 30px;
+  background-color: #f3f3f3;
+  font-size: 14px;
+  color: #333;
+  height: 32px;
+  box-sizing: border-box;
+}
+
+.bandeira {
+  width: 20px;
+  height: 14px;
+  border-radius: 2px;
+  object-fit: cover;
+}
+
+.input[type="tel"] {
+  padding-left: 90px; 
+}
+
+/* Mensagens de erro */
+.erro {
+  color: red;
+  font-size: 13px;
+  margin-top: 4px;
+}
+.mainContent {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-start;
+  gap: 40px;
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+/* --- CARD LATERAL --- */
+.infoCard {
+  flex: 0 0 300px;
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+}
+
+.infoCard p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+.logoCompanhia {
+  width: 90px;
+  height: auto;
+  margin-left: auto;
+  object-fit: contain;
 }

@@ -2,13 +2,15 @@ import { useState } from "react";
 import styles from "./PassoUm.module.css";
 import Stepper from "../layout/Stepper";
 import { useNavigate } from "react-router-dom";
+import { PiCaretUpDown } from "react-icons/pi";
+import { FaLock } from "react-icons/fa";
+import Button from "../layout/Button";
 
 import latam from "../../img/latam.png";
 import airportugal from "../../img/airportugal.png";
 import smiles from "../../img/smiles.png";
 import tudoazul from "../../img/tudoazul.png";
 
-// Funções utilitárias
 function formatCpf(value) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
   return digits
@@ -37,7 +39,7 @@ function PassoUm() {
   const [cpfRaw, setCpfRaw] = useState("");
   const [cpfTouched, setCpfTouched] = useState(false);
 
-  const navigate = useNavigate(); // Hook de navegação
+  const navigate = useNavigate();
 
   const programas = [
     { id: "azul", nome: "TudoAzul", logo: tudoazul },
@@ -54,9 +56,14 @@ function PassoUm() {
   const cpfFormatted = formatCpf(cpfRaw);
   const cpfIsValid = cpfRaw.length === 11 && isValidCpf(cpfRaw);
 
+  const handleSelecionarPrograma = (id) => {
+    setPrograma(id);
+    localStorage.setItem("programaSelecionado", id); // 🔹 salva escolha
+  };
+
   const handleProsseguir = () => {
     if (programa && cpfIsValid) {
-      navigate("/passodois"); // Rota de destino
+      navigate("/passodois");
     }
   };
 
@@ -66,8 +73,8 @@ function PassoUm() {
 
       <div className={styles.container}>
         <div className={styles.container_titulo}>
-          <p>
-            <span>01. </span> Escolha o programa de fidelidade.
+          <p className={styles.titulo}>
+            <span className={styles.span_titulo}>01. </span> Escolha o programa de fidelidade.
           </p>
         </div>
 
@@ -76,66 +83,66 @@ function PassoUm() {
             {programas.map((p) => (
               <button
                 key={p.id}
-                onClick={() => setPrograma(p.id)}
+                onClick={() => handleSelecionarPrograma(p.id)}
                 className={`${styles.programaBtn} ${
                   programa === p.id ? styles.ativo : ""
                 }`}
               >
-                <img src={p.logo} alt={p.nome} />
+                <img src={p.logo} alt={p.nome} className={`${styles.companyLogo} ${styles[p.id]}`} />
               </button>
             ))}
           </div>
         </div>
 
-
         <div className={styles.container_campos}>
-        
-          {/* Campo Produto */}
           <div className={styles.campo}>
             <label htmlFor="produto">Produto</label>
-            <select id="produto" className={styles.select}>
-              <option value="liminar">Liminar</option>
-              <option value="outro">Outro</option>
-            </select>
+            <div className={styles.inputWrapper}>
+              <select id="produto" className={styles.select}>
+                <option value="liminar">Liminar</option>
+                <option value="outro">Outro</option>
+              </select>
+              <PiCaretUpDown className={styles.inputIcon} />
+            </div>
           </div>
 
-            {/* Campo CPF */}
           <div className={styles.campo}>
             <label htmlFor="cpf">CPF</label>
-            <input
-              id="cpf"
-              type="text"
-              className={styles.input}
-              placeholder="000.000.000-00"
-              value={cpfFormatted}
-              onChange={handleCpfChange}
-              onBlur={() => setCpfTouched(true)}
-              inputMode="numeric"
-              autoComplete="off"
-            />
+            <div className={styles.inputWrapper}>
+              <input
+                id="cpf"
+                type="text"
+                className={styles.input}
+                placeholder="Ilimitado"
+                value={cpfFormatted}
+                onChange={handleCpfChange}
+                onBlur={() => setCpfTouched(true)}
+                inputMode="numeric"
+                autoComplete="off"
+              />
+              <FaLock className={styles.inputIcon} />
+            </div>
+
             {cpfTouched && cpfRaw.length > 0 && !cpfIsValid && (
               <p className={styles.erro}>CPF inválido</p>
             )}
           </div>
         </div>
-      
 
-      <div className={styles.botao_container}>
-        <button
-          disabled={!programa || !cpfIsValid}
-          onClick={handleProsseguir}
-          className={`${styles.prosseguirBtn} ${
-            programa && cpfIsValid ? styles.ativo : ""
-          }`}
-        >
-          Prosseguir
-        </button>
+        <div className={styles.botao_container}>
+          <Button texto="Prosseguir" to="/passodois" onValidar={handleProsseguir} />
+        </div>
       </div>
+
+      <div className={styles.infoCard}>
+        <p>
+          Escolha de qual programa de fidelidade você quer vender suas milhas.
+          <br />
+          <strong>Use apenas contas em seu nome.</strong>
+        </p>
       </div>
     </section>
   );
 }
 
 export default PassoUm;
-
-

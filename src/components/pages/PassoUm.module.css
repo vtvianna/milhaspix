@@ -1,70 +1,83 @@
-
+body{
+font-family: 'DM Sans', sans-serif;
+  width: 1440px;
+height: 800px;
+gap: 32px;
+overflow-x: hidden;
+}
 
 .tiles {
+  margin: 0 auto;
   font-family: 'DM Sans', sans-serif;
   width: 1216px;
   height: 345px;
-  gap: 40px; 
+  gap: 40px;
   display: flex;
   margin: 0 auto;
  
-  
 }
 
 .container {
-  width: 640px; 
+  width: 640px;
   height: 229px;
   gap: 32px;
   border: 1px solid #E2E2E2;
-  opacity: 1;
-  
+ border-radius: 8px ;
+   flex: 0 0 600px;  
 }
 
 .container_titulo {
-   box-sizing: border-box;
+  padding: 16px;
+  box-sizing: border-box;
   width: 640px;
   height: 60px;
   gap: 8px;
   border-bottom: 1px solid #E2E2E2;
-  padding: 16px;
-}
-
-.container_companhia {
-  width: 640px;
-height: 72px;
-gap: 24px;
-padding-top: 16px;
-padding-right: 16px;
-padding-bottom: 12px;
-padding-left: 16px;
-}
-
-.companhia {
-  width: 608px;
-  height: 44px;
-  gap: 12px;
- 
   display: flex;
   align-items: center;
 }
 
-/* botões das companhias */
+.titulo{
+  font-family: 'DM Sans', sans-serif;
+font-weight: 500; 
+font-style: normal;
+font-size: 1.125rem; 
+line-height: 1.75rem; 
+letter-spacing: 0;
+  color: #2E3D50;
+  font-family: 'DM Sans';
+}
+
+.container_companhia {
+   box-sizing: border-box;
+  width: 640px;
+  height: 72px;
+  gap: 24px;
+  padding: 16px;
+}
+
+.companhia {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+  flex-wrap: wrap;
+}
+
+/* ===== BOTÕES ===== */
 .programaBtn {
-  
   width: 143px;
   height: 44px;
   gap: 8px;
   padding: 12px 8px;
   border-radius: 56px;
-  border: 2px;
+  border: 2px solid transparent;
   display: flex;
   justify-content: center;
   align-items: center;
-}
-
-.programaBtn img {
-  height: 61px;
-  height: 26px;
+  background-color: #fff;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
 }
 
 .programaBtn:hover {
@@ -73,104 +86,113 @@ padding-left: 16px;
 
 .programaBtn.ativo {
   border-color: #007bff;
-  background-color: #e6f0ff;
+  background-color: white;
 }
 
-/* botão prosseguir */
-.botao_container {
-  width: 640px;
-  height: 42px;
- position: absolute;
- border-top: 1px;
+/* ===== LOGOS ===== */
+
+
+
+
+
+/* LATAM */
+.latam {
+  width: 72px;
+  height: 24;
   
-  justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
- 
 }
 
-.prosseguirBtn {
-   width: 142px;              
-  height: 40px;              
-  border-radius: 44px;       
-  background: #ccc;          
-  color: #fff;
-  font-size: 14px;
-  font-weight: bold;
-  cursor: not-allowed;
-  gap:8px;
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-right: 24px;
-  padding-left: 24px;
-
+/* TudoAzul */
+.azul {
+  width: 61px;
+  height: 26px;
+  
 }
 
-.prosseguirBtn.ativo {
-  background-color: #1E90FF;
-  cursor: pointer;
+/* Smiles */
+.smiles {
+  width: 51px;
+  height: 21px;
+  
 }
 
-.prosseguirBtn.ativo:hover {
-  background: #1E90FF;
+/* Air Portugal */
+.air {
+  width: 99px;
+  height: 18px;
+  
 }
 
-/* container dos selects */
+/* ===== CAMPOS ===== */
 .container_campos {
-   box-sizing: border-box;
+  box-sizing: border-box;
   display: flex;
   width: 640px;
   height: 97px;
-  gap:4px;
-  padding-top: 12px;
+  gap: 12px;
+  padding-top: 12px ;
+  padding-right: 16px;
+  padding-bottom: 16px;
   
-padding-right: 16px;
-padding-bottom: 16px;
-padding-left: 16px;
 }
 
-/* cada campo (label + select) */
 .campo {
+
   width: 298px;
   height: 69px;
-    box-sizing: border-box;
+  box-sizing: border-box;
+  padding-top: 10px;
   padding-bottom: 10px;
   padding-right: 16px;
   padding-left: 16px;
-  flex: 1; /* divide igualmente */
+ 
   display: flex;
   flex-direction: column;
-  font-size: 14px;
 }
 
 .campo label {
+  
   margin-bottom: 4px;
   font-weight: bold;
-  
 }
 
-/* select estilizado */
-.select {
-    box-sizing: border-box;
+.select,
+.input {
+   background-color: #E2E2E2;
+  box-sizing: border-box;
   padding: 10px 16px;
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 44px;
   width: 298px;
   height: 44px;
-  justify-content: space-between;
-  border-radius: 44px;
-  cursor: pointer;
+  font-size: 16px;
+  line-height: 1.3;
+  color: #2E3D50;
+  outline: none;
+}
+.select:focus,
+.input:focus {
+  border-color: #1E90FF;
+  background-color: #fff;
 }
 
-.input {
-    box-sizing: border-box;
-  padding: 10px 16px; 
+.select {
+  background-color: #E2E2E2;
+  box-sizing: border-box;
+  padding: 10px 40px 10px 16px; /* espaço à direita pro ícone */
   border: 1px solid #ccc;
-  border-radius: 4px;
+  border-radius: 44px;
   width: 298px;
   height: 44px;
-  justify-content: space-between;
-  border-radius: 44px;
+  font-size: 16px;
+  color: #2E3D50;
+  outline: none;
+  cursor: pointer;
+
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  background: none;
 }
 
 
@@ -180,19 +202,179 @@ padding-left: 16px;
   margin-top: 4px;
 }
 
-span{
-  width: 29px;
-  height: 28px;
-  color: #1E90FF;
+/* ===== BOTÃO PROSSEGUIR ===== */
+.botao_container {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end; 
+  padding: 16px;
+  position: relative; 
 }
-p{
+
+.prosseguirBtn {
+  width: 142px;
+  height: 40px;
+  border-radius: 44px;
+  background: #ccc;
+  color: #fff;
+  font-size: 14px;
+  font-weight: bold;
+  cursor: not-allowed;
+  padding: 10px 24px;
+}
+
+.prosseguirBtn.ativo {
+  background-color: #1E90FF;
+  cursor: pointer;
+}
+
+.prosseguirBtn.ativo:hover {
+  background: #007bff;
+}
+
+/* ===== TIPOGRAFIA ===== */
+.span_titulo {
+  color: #1E90FF;
+  font-weight: 500;
+}
+
+.inputWrapper {
+  position: relative;
+  width: 100%;
+}
+
+.inputIcon {
+  position: absolute;
+  right: 14px;
+  top: 50%;
+  transform: translateY(-50%);
+  color: #555;
+  pointer-events: none;
+  font-size: 18px;
+}
+/* --- LAYOUT COM CARD LATERAL --- */
+.mainContent {
+ display: flex;
+  flex-direction: row;        /* 🔹 garante lado a lado */
+  justify-content: center;    /* 🔹 centraliza no meio da tela */
+  align-items: flex-start;    /* 🔹 alinha pelo topo */
+  gap: 40px;                  /* 🔹 espaço entre container e card */
+  width: 224px;
+  height: 86px;
+  max-width: 1200px;          /* 🔹 largura limite */
+  margin: 0 auto;
+  padding-top: 40px;
   box-sizing: border-box;
-  width: 571px;
-  height: 28px;
-  font-family: 'DM Sans', sans-serif;
-font-weight: 500; 
-font-style: normal; 
-font-size: 1.125rem; 
-line-height: 1.75rem; 
-letter-spacing: 0;
+}
+
+/* CARD LATERAL (fora do container) */
+.infoCard {
+  width: 224px;
+  height: 86px;
+ flex: 0 0 300px;            /* 🔹 largura fixa do card */
+  background: #fff;
+  border: 1px solid #e2e2e2;
+  border-radius: 12px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+  padding: 20px;
+  text-align: center;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 160px;
+  
+}
+
+.infoCard p {
+  font-size: 14px;
+  line-height: 1.5;
+  color: #333;
+}
+
+
+
+/* --- AJUSTE RESPONSIVO --- */
+/* --- CORRIGE O LAYOUT NO CELULAR --- */
+@media (max-width: 768px) {
+.tiles > :first-child {
+    display: none !important;
+  }
+
+  html, body {
+    width: 100%;
+    overflow-x: hidden; /* 🔹 impede scroll lateral */
+  }
+
+  .tiles {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+   width: 340px;
+   height: 445px;
+    min-height: 100vh;
+    background: #ffffff;
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box; /* 🔹 evita somar margens/paddings */
+  }
+
+  .container {
+    background: #fff;
+    width: 90%;              /* 🔹 muda de 340px para 90% da tela */
+    max-width: 340px;        /* 🔹 limite máximo igual ao design */
+    min-height: 465px;
+    border-radius: 12px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 16px;
+    margin: 0 auto;          /* 🔹 centraliza */
+    box-sizing: border-box;
+  }
+
+  .container_titulo{
+    width: 308px;
+height: 52px;
+gap: 8px;
+
+opacity: 1;
+padding: 12px;
+border-bottom-width: 1px;
+
+  }
+  .container_campos {
+   
+  }
+
+  .footerMobile {
+    width: 100%;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    background: #fff;
+    border-top: 1px solid #eee;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 10px 20px;
+    box-sizing: border-box;
+  }
+
+  .footerMobile span {
+    color: #007bff;
+    font-size: 14px;
+  }
+
+  .botao_container button {
+    background: #007bff;
+    color: #fff;
+    border-radius: 20px;
+    padding: 10px 20px;
+    border: none;
+    font-weight: 500;
+    font-size: 14px;
+  }
 }

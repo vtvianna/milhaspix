@@ -1,9 +1,16 @@
 import Stepper from "../layout/Stepper";
 import styles from "./PassoTres.module.css";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
+import { FaRegUserCircle, FaLock, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import Button from "../layout/Button";
+import ButtonVoltar from "../layout/ButtonVoltar";
 
-// Funções utilitárias
+import latam from "../../img/latam.png";
+import airportugal from "../../img/airportugal.png";
+import smiles from "../../img/smiles.png";
+import tudoazul from "../../img/tudoazul.png";
+
 function formatCpf(value) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
   return digits
@@ -27,12 +34,9 @@ function isValidCpf(cpf) {
   return d1 === parseInt(s[9]) && d2 === parseInt(s[10]);
 }
 
-// Funções de Formatação e Validação
 function formatTelefone(value) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
-  return digits
-    .replace(/^(\d{2})(\d)/, "($1) $2")
-    .replace(/(\d{5})(\d)/, "$1-$2");
+  return digits.replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
 }
 
 function isValidTelefone(telefone) {
@@ -40,141 +44,162 @@ function isValidTelefone(telefone) {
   return cleanTelefone.length === 11;
 }
 
-function PassoTres() {
-  const [programa, setPrograma] = useState(null);
+function isValidEmail(email) {
+  const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  return regex.test(email.toLowerCase());
+}
 
-  // CPF
+function PassoTres() {
   const [cpfRaw, setCpfRaw] = useState("");
   const [cpfTouched, setCpfTouched] = useState(false);
+  const [login, setLogin] = useState("");
+  const [senha, setSenha] = useState("");
+  const [telefone, setTelefone] = useState("");
+  const [companhiaSelecionada, setCompanhiaSelecionada] = useState(null);
+
+  const navigate = useNavigate();
+
+  const logos = { latam, air: airportugal, smiles, azul: tudoazul };
+
+  useEffect(() => {
+    const selecionada = localStorage.getItem("programaSelecionado");
+    if (selecionada) setCompanhiaSelecionada(selecionada);
+  }, []);
+
+  const cpfFormatted = formatCpf(cpfRaw);
+  const telefoneFormatted = formatTelefone(telefone);
+
+  const cpfIsValid = cpfRaw.length === 11 && isValidCpf(cpfRaw);
+  const loginIsValid = isValidEmail(login);
+  const senhaIsValid = senha.length >= 6;
+  const telefoneIsValid = isValidTelefone(telefone);
+
   const handleCpfChange = (e) => {
     const digits = e.target.value.replace(/\D/g, "").slice(0, 11);
     setCpfRaw(digits);
   };
-  const cpfFormatted = formatCpf(cpfRaw);
-  const cpfIsValid = cpfRaw.length === 11 && isValidCpf(cpfRaw);
-
-  // Novos campos
-  const [login, setLogin] = useState("");
-  const [senha, setSenha] = useState("");
-  const [telefone, setTelefone] = useState("");
-
-  const navigate = useNavigate();
 
   const handleProsseguir = () => {
-    if (programa && cpfIsValid && login && senha && telefone) {
+    if (cpfIsValid && loginIsValid && senhaIsValid && telefoneIsValid) {
       navigate("/passodois");
     }
   };
 
-  // Validações de login e senha
-  const loginIsValid = login.length > 0;
-  const senhaIsValid = senha.length >= 6; // Exemplo de mínimo de 6 caracteres
-
-  // Formatação de telefone
-  const telefoneFormatted = formatTelefone(telefone);
-  const telefoneIsValid = isValidTelefone(telefone);
-
   return (
     <section className={styles.tiles}>
       <Stepper currentStep={2} />
-
-      <div className={styles.container}>
-        <div className={styles.container_titulo}>
-          Insira os dados do programa de Fidelidade
-        </div>
-
-        {/* Campos lado a lado */}
-        <div className={styles.container_campos}>
-          {/* Campo CPF */}
-          <div className={styles.campo}>
-            <label htmlFor="cpf">CPF</label>
-            <input
-              id="cpf"
-              type="text"
-              className={styles.input}
-              placeholder="000.000.000-00"
-              value={cpfFormatted}
-              onChange={handleCpfChange}
-              onBlur={() => setCpfTouched(true)}
-              inputMode="numeric"
-              autoComplete="off"
-            />
-            {cpfTouched && cpfRaw.length > 0 && !cpfIsValid && (
-              <p className={styles.erro}>CPF inválido</p>
+      <div className={styles.mainContent}>
+        <div className={styles.container}>
+          <div className={styles.container_titulo}>
+            <div className={styles.titulo}>
+              <span className={styles.span_titulo}>03. </span> Informações da conta
+            </div>
+            {companhiaSelecionada && (
+              <img
+                src={logos[companhiaSelecionada]}
+                alt={companhiaSelecionada}
+                className={styles.logoCompanhia}
+              />
             )}
           </div>
 
-          {/* Campo Login */}
-          <div className={styles.campo}>
-            <label htmlFor="login">Login de acesso</label>
-            <input
-              id="login"
-              type="text"
-              className={styles.input}
-              placeholder="Digite seu login"
-              value={login}
-              onChange={(e) => setLogin(e.target.value)}
-              autoComplete="off"
-            />
-            {!loginIsValid && <p className={styles.erro}>Login inválido</p>}
+          {/* Campos */}
+          <div className={styles.container_campos}>
+            <div className={styles.campo}>
+              <label htmlFor="cpf">CPF</label>
+              <div className={styles.inputWrapper}>
+                <input
+                  id="cpf"
+                  type="text"
+                  className={styles.input}
+                  placeholder="000.000.000-00"
+                  value={cpfFormatted}
+                  onChange={handleCpfChange}
+                  onBlur={() => setCpfTouched(true)}
+                  inputMode="numeric"
+                />
+                <FaRegUserCircle className={styles.iconInput} />
+              </div>
+              {cpfTouched && cpfRaw.length > 0 && !cpfIsValid && (
+                <p className={styles.erro}>CPF inválido</p>
+              )}
+            </div>
+
+            <div className={styles.campo}>
+              <label htmlFor="login">E-mail de acesso</label>
+              <div className={styles.inputWrapper}>
+                <input
+                  id="login"
+                  type="email"
+                  className={styles.input}
+                  placeholder="exemplo@email.com"
+                  value={login}
+                  onChange={(e) => setLogin(e.target.value)}
+                />
+                <FaEnvelope className={styles.iconInput} />
+              </div>
+              {login.length > 0 && !loginIsValid && (
+                <p className={styles.erro}>Digite um e-mail válido</p>
+              )}
+            </div>
+          </div>
+
+          <div className={styles.container_campos}>
+            <div className={styles.campo}>
+              <label htmlFor="senha">Senha de acesso</label>
+              <div className={styles.inputWrapper}>
+                <input
+                  id="senha"
+                  type="password"
+                  className={styles.input}
+                  placeholder="Digite sua senha"
+                  value={senha}
+                  onChange={(e) => setSenha(e.target.value)}
+                />
+                <FaLock className={styles.iconInput} />
+              </div>
+            </div>
+
+            <div className={styles.campo}>
+              <label htmlFor="telefone">Telefone</label>
+              <div className={styles.inputWrapper}>
+                <span className={styles.prefixoDentro}>
+                  <img
+                    src="https://flagcdn.com/w20/br.png"
+                    alt="BR"
+                    className={styles.bandeira}
+                  />
+                  +55
+                </span>
+                <input
+                  id="telefone"
+                  type="tel"
+                  className={styles.input}
+                  placeholder="(99) 99999-9999"
+                  value={telefoneFormatted}
+                  onChange={(e) => setTelefone(e.target.value)}
+                />
+                <FaWhatsapp className={`${styles.iconInput} ${styles.iconWhats}`} />
+              </div>
+            </div>
+          </div>
+
+          <div className={styles.botao_container}>
+            <ButtonVoltar texto="Voltar" to="/passodois" />
+            <Button texto="Finalizar" to="/passoquatro" onValidar={handleProsseguir} />
           </div>
         </div>
 
-        <div className={styles.container_campos}>
-          {/* Campo Senha */}
-          <div className={styles.campo}>
-            <label htmlFor="senha">Senha de acesso</label>
-            <input
-              id="senha"
-              type="password"
-              className={styles.input}
-              placeholder="Digite sua senha"
-              value={senha}
-              onChange={(e) => setSenha(e.target.value)}
-              autoComplete="off"
-            />
-            {senha.length > 0 && senha.length < 6 && (
-              <p className={styles.erro}>Senha deve ter no mínimo 6 caracteres</p>
-            )}
-          </div>
-
-          {/* Campo Telefone */}
-          <div className={styles.campo}>
-            <label htmlFor="telefone">Telefone para autenticação</label>
-            <input
-              id="telefone"
-              type="tel"
-              className={styles.input}
-              placeholder="(99) 99999-9999"
-              value={telefoneFormatted}
-              onChange={(e) => setTelefone(e.target.value)}
-              autoComplete="off"
-            />
-            {telefone.length > 0 && !telefoneIsValid && (
-              <p className={styles.erro}>Telefone inválido</p>
-            )}
-          </div>
+        <div className={styles.infoCard}>
+          <p>
+            Aqui você deve informar os dados da sua conta no programa de milhagem.
+            <br />
+            <strong>Use apenas contas em seu nome.</strong>
+          </p>
         </div>
-        <div className={styles.botao_container}>
-        <button
-          disabled={!programa || !cpfIsValid || !loginIsValid || !senhaIsValid || !telefoneIsValid}
-          onClick={handleProsseguir}
-          className={`${styles.prosseguirBtn} ${
-            programa && cpfIsValid && loginIsValid && senhaIsValid && telefoneIsValid
-              ? styles.ativo
-              : ""
-          }`}
-        >
-          Prosseguir
-        </button>
       </div>
-
-      </div>
-
-      
     </section>
   );
 }
 
 export default PassoTres;
-
