@@ -54,7 +54,8 @@ function PassoDois() {
         if (!valor || isNaN(Number(valor))) return;
         setLoading(true);
 
-        const url = `https://api.milhaspix.com/simulate-ranking?mile_value=${valor}`;
+        const url = `/api/ranking?mile_value=${valor}`;
+
         console.log("🔹 Chamando API:", url);
 
         const res = await fetch(url);
