@@ -11,6 +11,7 @@ import airportugal from "../../img/airportugal.png";
 import smiles from "../../img/smiles.png";
 import tudoazul from "../../img/tudoazul.png";
 
+// Formatadores e validadores
 function formatCpf(value) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
   return digits
@@ -52,9 +53,11 @@ function isValidEmail(email) {
 function PassoTres() {
   const [cpfRaw, setCpfRaw] = useState("");
   const [cpfTouched, setCpfTouched] = useState(false);
+
   const [login, setLogin] = useState("");
   const [senha, setSenha] = useState("");
   const [telefone, setTelefone] = useState("");
+
   const [companhiaSelecionada, setCompanhiaSelecionada] = useState(null);
 
   const navigate = useNavigate();
@@ -79,15 +82,19 @@ function PassoTres() {
     setCpfRaw(digits);
   };
 
+  // 🔹 Função usada para validar antes de prosseguir
   const handleProsseguir = () => {
-    if (cpfIsValid && loginIsValid && senhaIsValid && telefoneIsValid) {
-      navigate("/passodois");
-    }
+    setCpfTouched(true); // força mostrar erro do CPF se inválido
+
+    // Podemos adicionar lógica para mostrar outras mensagens também se quiser
+
+    return cpfIsValid && loginIsValid && senhaIsValid && telefoneIsValid;
   };
 
   return (
     <section className={styles.tiles}>
       <Stepper currentStep={2} />
+
       <div className={styles.mainContent}>
         <div className={styles.container}>
           <div className={styles.container_titulo}>
@@ -117,6 +124,7 @@ function PassoTres() {
                   onChange={handleCpfChange}
                   onBlur={() => setCpfTouched(true)}
                   inputMode="numeric"
+                  required
                 />
                 <FaRegUserCircle className={styles.iconInput} />
               </div>
@@ -135,6 +143,7 @@ function PassoTres() {
                   placeholder="exemplo@email.com"
                   value={login}
                   onChange={(e) => setLogin(e.target.value)}
+                  required
                 />
                 <FaEnvelope className={styles.iconInput} />
               </div>
@@ -155,9 +164,13 @@ function PassoTres() {
                   placeholder="Digite sua senha"
                   value={senha}
                   onChange={(e) => setSenha(e.target.value)}
+                  required
                 />
                 <FaLock className={styles.iconInput} />
               </div>
+              {senha.length > 0 && !senhaIsValid && (
+                <p className={styles.erro}>A senha deve ter pelo menos 6 caracteres</p>
+              )}
             </div>
 
             <div className={styles.campo}>
@@ -178,15 +191,20 @@ function PassoTres() {
                   placeholder="(99) 99999-9999"
                   value={telefoneFormatted}
                   onChange={(e) => setTelefone(e.target.value)}
+                  required
                 />
                 <FaWhatsapp className={`${styles.iconInput} ${styles.iconWhats}`} />
               </div>
+              {telefone.length > 0 && !telefoneIsValid && (
+                <p className={styles.erro}>Telefone inválido</p>
+              )}
             </div>
           </div>
 
+          {/* Botões de navegação */}
           <div className={styles.botao_container}>
             <ButtonVoltar texto="Voltar" to="/passodois" />
-            <Button texto="Finalizar" to="/passoquatro" onValidar={handleProsseguir} />
+            <Button texto="Concluir" to="/passoquatro" onValidar={handleProsseguir} />
           </div>
         </div>
 
@@ -203,3 +221,4 @@ function PassoTres() {
 }
 
 export default PassoTres;
+

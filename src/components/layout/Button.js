@@ -6,14 +6,17 @@ function Button({ texto = "Prosseguir", to = "/", icone, onValidar }) {
   const navigate = useNavigate();
 
   const handleClick = () => {
-    // 🔹 Se o passo tiver função de validação, executa e só navega se for true
+    // 🔹 Caso exista uma função de validação passada pelo passo
     if (onValidar) {
-      const valido = onValidar();
-      if (valido) navigate(to);
-      return;
+      const valido = onValidar(); // deve retornar true ou false
+
+      if (valido) {
+        navigate(to); // só navega se a validação for TRUE
+      }
+      return; // impede o botão de avançar sozinho
     }
 
-    // 🔹 Se não houver validação manual, valida campos com required
+    // 🔹 Caso não tenha função de validação, tenta validar campos required
     const requiredFields = document.querySelectorAll("[required]");
     let allValid = true;
 
@@ -37,4 +40,3 @@ function Button({ texto = "Prosseguir", to = "/", icone, onValidar }) {
 }
 
 export default Button;
-
