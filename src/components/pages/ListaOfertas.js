@@ -18,15 +18,23 @@ function ListaOfertas() {
   useEffect(() => {
     const fetchOfertas = async () => {
       try {
-        const response = await fetch("/simulate-offers-list");
+        setLoading(true);
+
+        // ✅ Agora chama a rota serverless na Vercel
+        const response = await fetch("/api/offers");
+        if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
+
         const data = await response.json();
+        console.log("✅ Ofertas recebidas:", data);
         setOfertas(data.offers || []);
       } catch (error) {
         console.error("❌ Erro ao buscar ofertas:", error);
+        setOfertas([]);
       } finally {
         setLoading(false);
       }
     };
+
     fetchOfertas();
   }, []);
 
@@ -90,6 +98,7 @@ function ListaOfertas() {
 
   return (
     <section className={styles.tiles}>
+      {/* 🔹 Cabeçalho da página */}
       <div className={styles.topo}>
         <h1>Minhas Ofertas</h1>
         <button className={styles.btnNova} onClick={() => navigate("/")}>
@@ -98,9 +107,11 @@ function ListaOfertas() {
         </button>
       </div>
 
+      {/* 🔹 Container principal */}
       <div className={styles.container}>
+        {/* 🔹 Linha superior com título e filtros */}
         <div className={styles.linhaSuperior}>
-          <span className={styles.tituloEsquerda}>Todas ofertas</span>
+          <span className={styles.tituloEsquerda}>Todas as ofertas</span>
 
           <div className={styles.filtroGlobal}>
             <div className={styles.inputWrapper}>
@@ -131,6 +142,7 @@ function ListaOfertas() {
           </div>
         </div>
 
+        {/* 🔹 Conteúdo principal */}
         {loading ? (
           <p>Carregando ofertas...</p>
         ) : ofertasFiltradas.length > 0 ? (
@@ -166,7 +178,11 @@ function ListaOfertas() {
                   </td>
 
                   <td>
-                    <span className={`${styles.statusBadge} ${getStatusClass(oferta.offerStatus)}`}>
+                    <span
+                      className={`${styles.statusBadge} ${getStatusClass(
+                        oferta.offerStatus
+                      )}`}
+                    >
                       <span className={styles.statusDot}></span>
                       {oferta.offerStatus}
                     </span>
@@ -174,7 +190,7 @@ function ListaOfertas() {
 
                   <td>{oferta.offerId}</td>
                   <td>{oferta.accountLogin}</td>
-                  <td>{oferta.availableQuantity.toLocaleString("pt-BR")}</td>
+                  <td>{oferta.availableQuantity?.toLocaleString("pt-BR")}</td>
                 </tr>
               ))}
             </tbody>
@@ -188,6 +204,7 @@ function ListaOfertas() {
 }
 
 export default ListaOfertas;
+
 
 
 
