@@ -7,8 +7,6 @@ function Mileage({ onRankingChange, onLoadingChange }) {
   const [ranking, setRanking] = useState([]);
   const suggestedMileage = "27.900";
 
-  const API_BASE = "https://api.milhaspix.com"; // ✅ URL absoluta corrigida
-
   const toggleSwitch = () => setIsEnabled(!isEnabled);
 
   const formatCurrency = (value) => {
@@ -45,7 +43,8 @@ function Mileage({ onRankingChange, onLoadingChange }) {
 
       if (onLoadingChange) onLoadingChange(true);
 
-      fetch(`${API_BASE}/simulate-ranking?mile_value=${rawValue}`) // ✅ corrigido
+      // ✅ Chamada para sua rota serverless (Vercel)
+      fetch(`/api/ranking?mile_value=${rawValue}`)
         .then((res) => {
           if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
           return res.json();
@@ -113,4 +112,5 @@ function Mileage({ onRankingChange, onLoadingChange }) {
 }
 
 export default Mileage;
+
 

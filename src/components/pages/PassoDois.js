@@ -18,8 +18,6 @@ function PassoDois() {
 
   const navigate = useNavigate();
 
-  const API_BASE = "https://api.milhaspix.com"; // ✅ URL absoluta para funcionar no Vercel
-
   // === FORMATADORES ===
   const formatMilhas = (value) => {
     const numeric = value.replace(/\D/g, "");
@@ -55,10 +53,8 @@ function PassoDois() {
         if (!valor || isNaN(Number(valor))) return;
         setLoading(true);
 
-        const url = `${API_BASE}/simulate-ranking?mile_value=${valor}`; // ✅ Corrigido
-        console.log("🔹 Chamando API:", url);
-
-        const res = await fetch(url);
+        // ✅ Chamada via rota serverless
+        const res = await fetch(`/api/ranking?mile_value=${valor}`);
         if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
         const data = await res.json();
 
@@ -85,8 +81,6 @@ function PassoDois() {
       navigate("/passotres");
     }
   };
-
-  const camposValidos = milhasInput && valorMilheiro && !isNaN(valorMilheiro);
 
   return (
     <section className={styles.tiles}>
