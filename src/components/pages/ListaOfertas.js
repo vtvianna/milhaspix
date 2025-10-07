@@ -20,12 +20,14 @@ function ListaOfertas() {
       try {
         setLoading(true);
 
-        // ✅ Agora chama a rota serverless na Vercel
+        // ✅ Chamada para sua rota Serverless da Vercel
         const response = await fetch("/api/offers");
+
         if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
 
         const data = await response.json();
         console.log("✅ Ofertas recebidas:", data);
+
         setOfertas(data.offers || []);
       } catch (error) {
         console.error("❌ Erro ao buscar ofertas:", error);
@@ -38,6 +40,7 @@ function ListaOfertas() {
     fetchOfertas();
   }, []);
 
+  // 🔹 Mapeia o logo do programa
   const getLogo = (programa) => {
     if (!programa) return null;
     switch (programa.toLowerCase()) {
@@ -56,6 +59,7 @@ function ListaOfertas() {
     }
   };
 
+  // 🔹 Define classe de cor do status
   const getStatusClass = (status) => {
     if (!status) return "";
     const s = status.toLowerCase();
@@ -64,6 +68,7 @@ function ListaOfertas() {
     return styles.statusPadrao;
   };
 
+  // 🔹 Filtro dinâmico
   const ofertasFiltradas = ofertas.filter((oferta) => {
     if (!valorFiltro) return true;
     const termo = valorFiltro.toLowerCase();
@@ -142,7 +147,7 @@ function ListaOfertas() {
           </div>
         </div>
 
-        {/* 🔹 Conteúdo principal */}
+        {/* 🔹 Lista de ofertas */}
         {loading ? (
           <p>Carregando ofertas...</p>
         ) : ofertasFiltradas.length > 0 ? (
@@ -204,6 +209,7 @@ function ListaOfertas() {
 }
 
 export default ListaOfertas;
+
 
 
 
