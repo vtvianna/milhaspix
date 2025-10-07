@@ -1,38 +1,26 @@
-.button {
-  width: 142px;
-  height: 40px;
-  border-radius: 44px;
+.botaoProximo {
+  background-color: #00bfff;
+  color: white;
   border: none;
-  font-weight: 600;
-  font-size: 14px;
+  padding: 12px 36px;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: 500;
   cursor: pointer;
-  transition: all 0.2s ease-in-out;
+  transition: background 0.25s ease, transform 0.15s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
 }
 
-/* === Ativo (Azul) === */
-.ativo {
-  background-color: #1e90ff;
-  color: #fff;
-}
-.ativo:hover {
-  background-color: #007bff;
+.botaoProximo:hover {
+  background-color: #009fca;
+  transform: scale(1.03);
 }
 
-/* === Desabilitado (Cinza) === */
-.disabled {
-  background-color: #ccc;
-  color: #fff;
-  cursor: not-allowed;
+.icone {
+  font-size: 18px;
+  display: flex;
+  align-items: center;
 }
-
-/* === Voltar (Borda Azul, Texto Azul) === */
-.voltar {
-  background-color: transparent;
-  color: #1e90ff;
-  border: 1px solid #1e90ff;
-  margin-right: 8px;
-}
-.voltar:hover {
-  background-color: #e8f2ff;
-}
-

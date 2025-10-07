@@ -1,34 +1,40 @@
-// Button.js
 import React from "react";
 import { useNavigate } from "react-router-dom";
 import styles from "./Button.module.css";
 
-function Button({ texto, to, onValidar, disabled }) {
+function Button({ texto = "Prosseguir", to = "/", icone, onValidar }) {
   const navigate = useNavigate();
 
-  const handleClick = (e) => {
-    e.preventDefault();
-    if (disabled) return; // bloqueia clique se desabilitado
-
+  const handleClick = () => {
+    // 🔹 Se o passo tiver função de validação, executa e só navega se for true
     if (onValidar) {
-      const resultado = onValidar();
-      if (resultado === false) return;
+      const valido = onValidar();
+      if (valido) navigate(to);
+      return;
     }
 
-    if (to) navigate(to);
+    // 🔹 Se não houver validação manual, valida campos com required
+    const requiredFields = document.querySelectorAll("[required]");
+    let allValid = true;
+
+    requiredFields.forEach((field) => {
+      if (!field.reportValidity()) {
+        allValid = false;
+      }
+    });
+
+    if (allValid) {
+      navigate(to);
+    }
   };
 
   return (
-    <button
-      onClick={handleClick}
-      className={`${styles.button} ${disabled ? styles.disabled : styles.ativo}`}
-      disabled={disabled}
-    >
+    <button className={styles.botaoProximo} type="button" onClick={handleClick}>
+      {icone && <span className={styles.icone}>{icone}</span>}
       {texto}
     </button>
   );
 }
 
 export default Button;
-
 
