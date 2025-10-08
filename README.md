@@ -6,9 +6,9 @@ Oferte suas milhas Campos dinâmicos permitem definir:
 
 Quantidade total de milhas;
 Valor desejado por cada 1.000 milhas (monetário, formatado em R$);
-Opção de “Definir média de milhas por passageiro” via switch animado;
+Opção de “Definir média de milhas por passageiro” ;
 Visualização em tempo real do ranking de ofertas, com mensagem “Aguardando milhas...” até o cálculo ser iniciado.
-Insira os dados do programa Tela de confirmação com campos de CPF e senha, necessários para validação no sistema.
+Insira os dados do programa Tela de confirmação com campos de CPF, senha, login e telefone necessários para validação no sistema.
 
 Pedido finalizado Exibe uma tela de sucesso com as informações da transação e mensagem confirmando o envio da oferta.
 
@@ -21,7 +21,7 @@ Cálculo automático de “Receba até R$ X,XX” conforme digitação;
 Ranking das ofertas obtido da API /simulate-offers-list;
 Persistência real com POST /offers;
 Atualização dinâmica em “Minhas Ofertas”.
-📊 Ranking de Ofertas
+ Ranking de Ofertas
 Mostra a posição e valor médio das ofertas mais recentes;
 Exibe “Aguardando milhas...” até que valores sejam digitados;
 Atualiza automaticamente após salvar nova oferta.
