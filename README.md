@@ -1,70 +1,43 @@
-# Getting Started with Create React App
+O projeto foi desenvolvido para replicar com precisão o layout original da plataforma MilhasPix, com um fluxo completo de quatro etapas:
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+Escolha a companhia aérea O usuário seleciona o programa de fidelidade desejado (LATAM Pass, Smiles, TudoAzul, TAP Miles&Go).
 
-## Available Scripts
+Oferte suas milhas Campos dinâmicos permitem definir:
 
-In the project directory, you can run:
+Quantidade total de milhas;
+Valor desejado por cada 1.000 milhas (monetário, formatado em R$);
+Opção de “Definir média de milhas por passageiro” via switch animado;
+Visualização em tempo real do ranking de ofertas, com mensagem “Aguardando milhas...” até o cálculo ser iniciado.
+Insira os dados do programa Tela de confirmação com campos de CPF e senha, necessários para validação no sistema.
 
-### `npm start`
+Pedido finalizado Exibe uma tela de sucesso com as informações da transação e mensagem confirmando o envio da oferta.
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Tela dinâmica com quatro etapas:
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+Layout idêntico ao design original MilhasPix;
+Sidebar com linha azul conectando as etapas;
+Inputs com ícones (Plane, DollarSign) e feedback visual;
+Cálculo automático de “Receba até R$ X,XX” conforme digitação;
+Ranking das ofertas obtido da API /simulate-offers-list;
+Persistência real com POST /offers;
+Atualização dinâmica em “Minhas Ofertas”.
+📊 Ranking de Ofertas
+Mostra a posição e valor médio das ofertas mais recentes;
+Exibe “Aguardando milhas...” até que valores sejam digitados;
+Atualiza automaticamente após salvar nova oferta.
 
-### `npm test`
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+ -Instruções para rodar localmente:
+  
+  1. Instale a CLI da Vercel (apenas uma vez):
+     npm i -g vercel
+ 
+  2. Na raiz do projeto, rode o comando:
+     vercel dev
+  
+  Isso vai simular o ambiente da Vercel:
+  - Frontend React em http://localhost:3000
+  - Rotas da API disponíveis em http://localhost:3000/api/offers
+  
+  Obs: Se quiser rodar só o front-end sem a API, adicione no package.json:
+     "proxy": "https://seu-projeto.vercel.app"

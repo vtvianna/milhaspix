@@ -11,34 +11,8 @@ import airportugal from "../../img/airportugal.png";
 import smiles from "../../img/smiles.png";
 import tudoazul from "../../img/tudoazul.png";
 
-function formatCpf(value) {
-  const digits = value.replace(/\D/g, "").slice(0, 11);
-  return digits
-    .replace(/^(\d{3})(\d)/, "$1.$2")
-    .replace(/^(\d{3})\.(\d{3})(\d)/, "$1.$2.$3")
-    .replace(/\.(\d{3})(\d{1,2})$/, ".$1-$2");
-}
-
-function isValidCpf(cpf) {
-  const s = cpf.replace(/\D/g, "");
-  if (s.length !== 11) return false;
-  if (/^(\d)\1+$/.test(s)) return false;
-  const calc = (t) => {
-    let sum = 0;
-    for (let i = 0; i < t; i++) sum += parseInt(s[i]) * (t + 1 - i);
-    const mod = (sum * 10) % 11;
-    return mod === 10 ? 0 : mod;
-  };
-  const d1 = calc(9);
-  const d2 = calc(10);
-  return d1 === parseInt(s[9]) && d2 === parseInt(s[10]);
-}
-
 function PassoUm() {
   const [programa, setPrograma] = useState(null);
-  const [cpfRaw, setCpfRaw] = useState("");
-  const [cpfTouched, setCpfTouched] = useState(false);
-
   const navigate = useNavigate();
 
   const programas = [
@@ -48,21 +22,13 @@ function PassoUm() {
     { id: "air", nome: "Air Portugal", logo: airportugal },
   ];
 
-  const handleCpfChange = (e) => {
-    const digits = e.target.value.replace(/\D/g, "").slice(0, 11);
-    setCpfRaw(digits);
-  };
-
-  const cpfFormatted = formatCpf(cpfRaw);
-  const cpfIsValid = cpfRaw.length === 11 && isValidCpf(cpfRaw);
-
   const handleSelecionarPrograma = (id) => {
     setPrograma(id);
-    localStorage.setItem("programaSelecionado", id); // 🔹 salva escolha
+    localStorage.setItem("programaSelecionado", id);
   };
 
   const handleProsseguir = () => {
-    if (programa && cpfIsValid) {
+    if (programa) {
       navigate("/passodois");
     }
   };
@@ -78,6 +44,7 @@ function PassoUm() {
           </p>
         </div>
 
+        {/* Programas */}
         <div className={styles.container_companhia}>
           <div className={styles.companhia}>
             {programas.map((p) => (
@@ -88,12 +55,17 @@ function PassoUm() {
                   programa === p.id ? styles.ativo : ""
                 }`}
               >
-                <img src={p.logo} alt={p.nome} className={`${styles.companyLogo} ${styles[p.id]}`} />
+                <img
+                  src={p.logo}
+                  alt={p.nome}
+                  className={`${styles.companyLogo} ${styles[p.id]}`}
+                />
               </button>
             ))}
           </div>
         </div>
 
+        {/* Produto + CPF estático */}
         <div className={styles.container_campos}>
           <div className={styles.campo}>
             <label htmlFor="produto">Produto</label>
@@ -107,25 +79,13 @@ function PassoUm() {
           </div>
 
           <div className={styles.campo}>
-            <label htmlFor="cpf">CPF</label>
+            <label>CPF</label>
             <div className={styles.inputWrapper}>
-              <input
-                id="cpf"
-                type="text"
-                className={styles.input}
-                placeholder="Ilimitado"
-                value={cpfFormatted}
-                onChange={handleCpfChange}
-                onBlur={() => setCpfTouched(true)}
-                inputMode="numeric"
-                autoComplete="off"
-              />
+              <div className={styles.input}>
+                000.000.000-00
+              </div>
               <FaLock className={styles.inputIcon} />
             </div>
-
-            {cpfTouched && cpfRaw.length > 0 && !cpfIsValid && (
-              <p className={styles.erro}>CPF inválido</p>
-            )}
           </div>
         </div>
 
@@ -146,3 +106,5 @@ function PassoUm() {
 }
 
 export default PassoUm;
+
+

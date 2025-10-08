@@ -20,17 +20,17 @@ function ListaOfertas() {
       try {
         setLoading(true);
 
-        // ✅ Chamada para sua rota Serverless da Vercel
+        //  Chamada para sua rota Serverless da Vercel
         const response = await fetch("/api/offers");
 
         if (!response.ok) throw new Error(`Erro HTTP ${response.status}`);
 
         const data = await response.json();
-        console.log("✅ Ofertas recebidas:", data);
+        console.log(" Ofertas recebidas:", data);
 
         setOfertas(data.offers || []);
       } catch (error) {
-        console.error("❌ Erro ao buscar ofertas:", error);
+        console.error(" Erro ao buscar ofertas:", error);
         setOfertas([]);
       } finally {
         setLoading(false);
@@ -40,7 +40,7 @@ function ListaOfertas() {
     fetchOfertas();
   }, []);
 
-  // 🔹 Mapeia o logo do programa
+  // Mapeia o logo do programa
   const getLogo = (programa) => {
     if (!programa) return null;
     switch (programa.toLowerCase()) {
@@ -59,7 +59,7 @@ function ListaOfertas() {
     }
   };
 
-  // 🔹 Define classe de cor do status
+  // Define classe de cor do status
   const getStatusClass = (status) => {
     if (!status) return "";
     const s = status.toLowerCase();
@@ -68,7 +68,7 @@ function ListaOfertas() {
     return styles.statusPadrao;
   };
 
-  // 🔹 Filtro dinâmico
+  // Filtro dinâmico
   const ofertasFiltradas = ofertas.filter((oferta) => {
     if (!valorFiltro) return true;
     const termo = valorFiltro.toLowerCase();
@@ -103,7 +103,7 @@ function ListaOfertas() {
 
   return (
     <section className={styles.tiles}>
-      {/* 🔹 Cabeçalho da página */}
+      {/*  Cabeçalho da página */}
       <div className={styles.topo}>
         <h1>Minhas Ofertas</h1>
         <button className={styles.btnNova} onClick={() => navigate("/")}>
@@ -112,9 +112,9 @@ function ListaOfertas() {
         </button>
       </div>
 
-      {/* 🔹 Container principal */}
+      {/*  Container principal */}
       <div className={styles.container}>
-        {/* 🔹 Linha superior com título e filtros */}
+        {/*  Linha superior com título e filtros */}
         <div className={styles.linhaSuperior}>
           <span className={styles.tituloEsquerda}>Todas as ofertas</span>
 
@@ -147,7 +147,7 @@ function ListaOfertas() {
           </div>
         </div>
 
-        {/* 🔹 Lista de ofertas */}
+        {/*  Lista de ofertas */}
         {loading ? (
           <p>Carregando ofertas...</p>
         ) : ofertasFiltradas.length > 0 ? (

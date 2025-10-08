@@ -82,7 +82,7 @@ function PassoTres() {
     setCpfRaw(digits);
   };
 
-  // 🔹 Função usada para validar antes de prosseguir
+  // Função usada para validar antes de prosseguir
   const handleProsseguir = () => {
     setCpfTouched(true); // força mostrar erro do CPF se inválido
 
