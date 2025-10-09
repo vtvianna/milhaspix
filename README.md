@@ -6,8 +6,8 @@ Oferte suas milhas Campos dinâmicos permitem definir:
 
 Quantidade total de milhas;
 Valor desejado por cada 1.000 milhas (monetário, formatado em R$);
-Opção de “Definir média de milhas por passageiro” ;
-Visualização em tempo real do ranking de ofertas, com mensagem “Aguardando milhas...” até o cálculo ser iniciado.
+“Definir média de milhas por passageiro” ;
+Visualização em tempo real do ranking de ofertas.
 Insira os dados do programa Tela de confirmação com campos de CPF, senha, login e telefone necessários para validação no sistema.
 
 Pedido finalizado Exibe uma tela de sucesso com as informações da transação e mensagem confirmando o envio da oferta.

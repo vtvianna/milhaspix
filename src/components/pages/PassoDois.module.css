@@ -15,13 +15,13 @@ overflow-x: hidden;
   gap: 40px;
   margin: 0 auto;
   align-items: flex-start; /* 🔹 alinha pelo topo */
-
+justify-content: center;
 }
 
 
 .container {
   width: 640px;
-  min-height: 246px;
+ height: 378px;
   height: auto;
   display: flex;
   flex-direction: column;
@@ -29,9 +29,6 @@ overflow-x: hidden;
   gap: 32px;
   border: 1px solid #E2E2E2;
   border-radius: 8px;
-  padding-bottom: 16px;
-  transition: all 0.3s ease;
-  overflow: visible;
 }
 
 .container_card{
@@ -347,14 +344,14 @@ border-radius: 40px;
 
 /* botão prosseguir (igual ao PassoTrês) */
 .botao_container {
-  width: 640px;
-  height: 42px;
-  position: absolute;
-  border-top: 1px;
-  justify-content: space-between;
-  padding-top: 16px;
-  padding-bottom: 16px;
-  
+   width: 640px;               /* mesma largura do container */
+  margin-left: 0;             /* garante alinhamento com a borda esquerda */
+  display: flex;
+  justify-content: flex-end; 
+  padding: 16px;
+  position: relative;
+  top: -1px;                  
+
 }
 
 .prosseguirBtn {

@@ -164,9 +164,10 @@ function PassoDois() {
             Buscando ranking...
           </div>
         )}
+      
       </div>
 
-      <div className={styles.botao_container}>
+        <div className={styles.botao_container}>
         <ButtonVoltar texto="Voltar" to="/passoum" />
         <Button texto="Prosseguir" to="/passotres" onValidar={handleProsseguir} />
       </div>
