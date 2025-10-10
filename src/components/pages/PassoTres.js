@@ -2,7 +2,12 @@ import Stepper from "../layout/Stepper";
 import styles from "./PassoTres.module.css";
 import { useNavigate } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { FaRegUserCircle, FaLock, FaWhatsapp, FaEnvelope } from "react-icons/fa";
+import {
+  FaRegUserCircle,
+  FaLock,
+  FaWhatsapp,
+  FaEnvelope,
+} from "react-icons/fa";
 import Button from "../layout/Button";
 import ButtonVoltar from "../layout/ButtonVoltar";
 
@@ -37,7 +42,9 @@ function isValidCpf(cpf) {
 
 function formatTelefone(value) {
   const digits = value.replace(/\D/g, "").slice(0, 11);
-  return digits.replace(/^(\d{2})(\d)/, "($1) $2").replace(/(\d{5})(\d)/, "$1-$2");
+  return digits
+    .replace(/^(\d{2})(\d)/, "($1) $2")
+    .replace(/(\d{5})(\d)/, "$1-$2");
 }
 
 function isValidTelefone(telefone) {
@@ -99,7 +106,8 @@ function PassoTres() {
         <div className={styles.container}>
           <div className={styles.container_titulo}>
             <div className={styles.titulo}>
-              <span className={styles.span_titulo}>03. </span> Informações da conta
+              <span className={styles.span_titulo}>03. </span> Informações da
+              conta
             </div>
             {companhiaSelecionada && (
               <img
@@ -169,7 +177,9 @@ function PassoTres() {
                 <FaLock className={styles.iconInput} />
               </div>
               {senha.length > 0 && !senhaIsValid && (
-                <p className={styles.erro}>A senha deve ter pelo menos 6 caracteres</p>
+                <p className={styles.erro}>
+                  A senha deve ter pelo menos 6 caracteres
+                </p>
               )}
             </div>
 
@@ -193,7 +203,9 @@ function PassoTres() {
                   onChange={(e) => setTelefone(e.target.value)}
                   required
                 />
-                <FaWhatsapp className={`${styles.iconInput} ${styles.iconWhats}`} />
+                <FaWhatsapp
+                  className={`${styles.iconInput} ${styles.iconWhats}`}
+                />
               </div>
               {telefone.length > 0 && !telefoneIsValid && (
                 <p className={styles.erro}>Telefone inválido</p>
@@ -204,13 +216,18 @@ function PassoTres() {
           {/* Botões de navegação */}
           <div className={styles.botao_container}>
             <ButtonVoltar texto="Voltar" to="/passodois" />
-            <Button texto="Concluir" to="/passoquatro" onValidar={handleProsseguir} />
+            <Button
+              texto="Concluir"
+              to="/passoquatro"
+              onValidar={handleProsseguir}
+            />
           </div>
         </div>
 
         <div className={styles.infoCard}>
           <p>
-            Aqui você deve informar os dados da sua conta no programa de milhagem.
+            Aqui você deve informar os dados da sua conta no programa de
+            milhagem.
             <br />
             <strong>Use apenas contas em seu nome.</strong>
           </p>
@@ -221,4 +238,3 @@ function PassoTres() {
 }
 
 export default PassoTres;
-

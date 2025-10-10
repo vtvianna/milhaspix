@@ -3,7 +3,7 @@ import styles from "./Mileage.module.css";
 
 function Mileage({ onRankingChange, onLoadingChange }) {
   const [isEnabled, setIsEnabled] = useState(false);
-  const [mileage, setMileage] = useState("R$ 10,00");
+  const [mileage, setMileage] = useState("R$ 00,00");
   const [ranking, setRanking] = useState([]);
   const suggestedMileage = "27.900";
 
@@ -43,7 +43,7 @@ function Mileage({ onRankingChange, onLoadingChange }) {
 
       if (onLoadingChange) onLoadingChange(true);
 
-      // ✅ Chamada para sua rota serverless (Vercel)
+      // Chamada para sua rota serverless (Vercel)
       fetch(`/api/ranking?mile_value=${rawValue}`)
         .then((res) => {
           if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);

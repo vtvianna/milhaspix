@@ -18,46 +18,20 @@ function PassoDois() {
 
   const navigate = useNavigate();
 
-  // === FORMATADORES ===
+  // FORMATADOR DE MILHAS
   const formatMilhas = (value) => {
     const numeric = value.replace(/\D/g, "");
     return numeric ? parseInt(numeric).toLocaleString("pt-BR") : "";
   };
 
-  const handleMilhasChange = (e) => {
-    const valorDigitado = e.target.value.replace(/\D/g, "");
-    setMilhasInput(formatMilhas(valorDigitado));
-
-    const valorPorMilheiro = 16.0;
-    const milhas = parseInt(valorDigitado || 0, 10);
-    const total = (milhas / 1000) * valorPorMilheiro;
-
-    if (total > 0) {
-      const formatted = total.toLocaleString("pt-BR", {
-        style: "currency",
-        currency: "BRL",
-        minimumFractionDigits: 2,
-      });
-      setValorEmReais(formatted);
-      setValorMilheiro(total);
-    } else {
-      setValorEmReais("");
-      setValorMilheiro(null);
-    }
-  };
-
-  // === FETCH DE RANKING ===
+  // FUNÇÃO DE BUSCA DO RANKING
   const fetchRanking = useCallback(
     debounce(async (valor) => {
       try {
-        if (!valor || isNaN(Number(valor))) return;
         setLoading(true);
-
-        // ✅ Chamada via rota serverless
         const res = await fetch(`/api/ranking?mile_value=${valor}`);
         if (!res.ok) throw new Error(`Erro HTTP ${res.status}`);
         const data = await res.json();
-
         setRanking(Array.isArray(data) ? data : data.ranking || []);
       } catch (err) {
         console.error("Erro ao buscar ranking:", err);
@@ -69,12 +43,39 @@ function PassoDois() {
     []
   );
 
+  // RANKING INICIAL (base 16,5)
   useEffect(() => {
-    if (valorMilheiro && !isNaN(valorMilheiro)) {
-      const valorFormatado = valorMilheiro.toFixed(2).replace(",", ".");
+    const valorInicial = 16.5;
+    fetchRanking(valorInicial.toFixed(2));
+  }, [fetchRanking]);
+
+  // ATUALIZAÇÃO PELO CAMPO DE MILHAS
+  const handleMilhasChange = (e) => {
+    const valorDigitado = e.target.value.replace(/\D/g, "");
+    setMilhasInput(formatMilhas(valorDigitado));
+
+    const valorPorMilheiro = 25.0; // 🔹 cálculo interno
+    const milhas = parseInt(valorDigitado || 0, 10);
+    const total = (milhas / 10000) * valorPorMilheiro;
+
+    if (total > 0) {
+      const formatted = total.toLocaleString("pt-BR", {
+        style: "currency",
+        currency: "BRL",
+        minimumFractionDigits: 2,
+      });
+      setValorEmReais(formatted);
+      setValorMilheiro(total);
+
+      // Atualiza ranking conforme o valor digitado
+      const valorFormatado = total.toFixed(2).replace(",", ".");
       fetchRanking(valorFormatado);
+    } else {
+      setValorEmReais("");
+      setValorMilheiro(null);
+      fetchRanking(16.5); // 🔹 volta para o ranking base de 16,5
     }
-  }, [valorMilheiro, fetchRanking]);
+  };
 
   const handleProsseguir = () => {
     if (valorMilheiro && milhasInput) {
@@ -87,6 +88,7 @@ function PassoDois() {
       <Stepper currentStep={1} />
 
       <div className={styles.container}>
+        {/*  TÍTULO  */}
         <div className={styles.container_titulo}>
           <p className={styles.titulo}>
             <span className={styles.span_titulo}>02. </span> Cadastro da oferta
@@ -106,6 +108,7 @@ function PassoDois() {
           </p>
         </div>
 
+        {/* OPÇÕES DE RECEBIMENTO */}
         <div className={styles.container_receber}>
           <div>Quero receber</div>
           <div className={styles.receber}>
@@ -125,6 +128,7 @@ function PassoDois() {
           </div>
         </div>
 
+        {/* CAMPOS */}
         <div className={styles.container_campos}>
           <div className={styles.campo}>
             <label htmlFor="milhasOfertadas">Milhas ofertadas</label>
@@ -135,46 +139,43 @@ function PassoDois() {
                 value={milhasInput}
                 onChange={handleMilhasChange}
                 className={styles.input}
-                placeholder="10.000"
+                placeholder=""
               />
               <PiAirplaneInFlight className={styles.inputIcon} />
             </div>
           </div>
 
           <div className={styles.campo}>
-            <label>Valor em R$</label>
+            <label>Valor a cada 10.000 milhas</label>
             <div className={styles.valorDisplay}>
               <PiCurrencyDollar className={styles.iconValor} />
               <span className={styles.valorTexto}>
-                {valorEmReais || "R$ 0,00"}
+                {valorEmReais || "R$ 25,00"}
               </span>
             </div>
           </div>
         </div>
 
+        {/* SEÇÃO DE MÉDIA DE MILHAS (VISUAL) */}
         <div className={styles.mileage_container}>
-          <Mileage
-            onRankingChange={setRanking}
-            onLoadingChange={setLoading}
-          />
+          <Mileage /> {/* não interfere mais no ranking */}
         </div>
-
-        {loading && (
-          <div style={{ paddingLeft: "16px", color: "#666" }}>
-            Buscando ranking...
-          </div>
-        )}
-      
       </div>
 
-        <div className={styles.botao_container}>
+      {/* BOTÕES */}
+      <div className={styles.botao_container}>
         <ButtonVoltar texto="Voltar" to="/passoum" />
-        <Button texto="Prosseguir" to="/passotres" onValidar={handleProsseguir} />
+        <Button
+          texto="Prosseguir"
+          to="/passotres"
+          onValidar={handleProsseguir}
+        />
       </div>
 
+      {/* RANKING */}
       <div className={styles.rankingContainer}>
         <div className={styles.ranking_titulo}>
-          <h3>Média de milhas</h3>
+          <h3>Milhas ofertadas</h3>
           <p>
             Ao vender mais de 20.000 milhas, ative as Opções Avançadas para
             definir a média de milhas por emissão.
@@ -186,7 +187,8 @@ function PassoDois() {
           <ul className={styles.rankingList}>
             {Array.isArray(ranking) && ranking.length > 0 ? (
               ranking.map((item) => {
-                const isUserPosition = item.description?.includes("sua posição");
+                const isUserPosition =
+                  item.description?.includes("sua posição");
                 return (
                   <li
                     key={item.position}

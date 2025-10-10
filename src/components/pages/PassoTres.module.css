@@ -1,7 +1,6 @@
-/* ===== SEU CSS ORIGINAL MANTIDO ===== */
 
 body {
-  font-family: 'DM Sans', sans-serif;
+  
   margin: 0;
   padding: 0;
   width: 100%;
@@ -11,13 +10,13 @@ body {
 
 .tiles {
    display: flex;
-  justify-content: center;        /* 🔹 Centraliza Stepper + Container */
+  justify-content: center;      
   align-items: flex-start;
-  gap: 80px;                      /* 🔹 Espaço entre Stepper e Formulário */
+  gap: 80px;                    
   width: 100%;
   max-width: 1200px;
-  margin: 40px auto;              /* 🔹 Centraliza na tela */
-  padding: 0 20px;                /* 🔹 Espaço lateral no mobile */
+  margin: 40px auto;            
+  padding: 0 20px;               
   box-sizing: border-box;
 }
 
@@ -43,14 +42,14 @@ body {
 
 
 .titulo{
-  font-family: 'DM Sans', sans-serif;
+ 
 font-weight: 500; 
 font-style: normal;
 font-size: 1.125rem; 
 line-height: 1.75rem; 
 letter-spacing: 0;
   color: #2E3D50;
-  font-family: 'DM Sans';
+  
 }
 .span_titulo {
   color: #1E90FF;
@@ -59,7 +58,7 @@ letter-spacing: 0;
 
 
 
-/* =================== BOTÃO =================== */
+/*  BOTÃO  */
 .botao_container {
   width: 100%;
   display: flex;
@@ -93,7 +92,7 @@ letter-spacing: 0;
   background: #1E90FF;
 }
 
-/* =================== CAMPOS =================== */
+/* CAMPOS */
 .container_campos {
   box-sizing: border-box;
   display: flex;
@@ -124,10 +123,10 @@ letter-spacing: 0;
   font-weight: bold;
 }
 
-/* INPUT PADRÃO */
 
 
-/* ======= CAMPO TELEFONE COM BANDEIRA ======= */
+
+/* CAMPO TELEFONE COM BANDEIRA  */
 .telefoneWrapper {
   display: flex;
   align-items: center;
@@ -286,7 +285,7 @@ letter-spacing: 0;
   height: 44px;
   border: 1px solid #ccc;
   border-radius: 44px;
-  padding: 10px 40px 10px 16px; /* 🔹 padding padrão */
+  padding: 10px 40px 10px 16px; 
   font-size: 16px;
   color: #2e3d50;
   background-color: #e2e2e2;
@@ -361,7 +360,7 @@ letter-spacing: 0;
   margin: 0 auto;
 }
 
-/* --- CARD LATERAL --- */
+/*  CARD LATERAL  */
 .infoCard {
   flex: 0 0 300px;
   background: #fff;

@@ -40,7 +40,8 @@ function PassoUm() {
       <div className={styles.container}>
         <div className={styles.container_titulo}>
           <p className={styles.titulo}>
-            <span className={styles.span_titulo}>01. </span> Escolha o programa de fidelidade.
+            <span className={styles.span_titulo}>01. </span> Escolha o programa
+            de fidelidade.
           </p>
         </div>
 
@@ -81,16 +82,18 @@ function PassoUm() {
           <div className={styles.campo}>
             <label>CPF</label>
             <div className={styles.inputWrapper}>
-              <div className={styles.input}>
-                000.000.000-00
-              </div>
+              <div className={styles.input}>Ilimitado</div>
               <FaLock className={styles.inputIcon} />
             </div>
           </div>
         </div>
 
         <div className={styles.botao_container}>
-          <Button texto="Prosseguir" to="/passodois" onValidar={handleProsseguir} />
+          <Button
+            texto="Prosseguir"
+            to="/passodois"
+            onValidar={handleProsseguir}
+          />
         </div>
       </div>
 
@@ -106,5 +109,3 @@ function PassoUm() {
 }
 
 export default PassoUm;
-
-

@@ -1,5 +1,5 @@
 .tiles {
-  font-family: 'DM Sans';
+ 
   width: 1216px;
   border-width: 1px;
   display: flex;
@@ -35,7 +35,7 @@ h1 {
   margin: 0;
 }
 
-/* 🔹 Botão Nova Oferta */
+/*  Botão Nova Oferta */
 .btnNova {
   background-color: #1E90FF;
   color: white;
@@ -55,7 +55,7 @@ h1 {
   background-color: #007bff;
 }
 
-/* 🔹 Linha superior */
+/*  Linha superior */
 .linhaSuperior {
   width: 100%;
   display: flex;
@@ -70,14 +70,14 @@ h1 {
   color: #2E3D50;
 }
 
-/* 🔹 Filtro */
+/*  Filtro */
 .filtroGlobal {
   display: flex;
   align-items: center;
   gap: 10px;
 }
 
-/* 🔍 Input com ícone de busca */
+/* Input com ícone de busca */
 .inputWrapper {
   position: relative;
   width: 250px;
@@ -102,7 +102,7 @@ h1 {
   pointer-events: none;
 }
 
-/* 🔹 Select */
+/*  Select */
 .selectFiltro {
   height: 38px;
   width: 180px;
@@ -114,7 +114,7 @@ h1 {
   cursor: pointer;
 }
 
-/* 🔹 Tabela */
+/*  Tabela */
 .tabela {
   width: 100%;
   border-collapse: collapse;
@@ -141,7 +141,7 @@ h1 {
   background-color: #f9fafb;
 }
 
-/* 🔹 Logo dos programas */
+/*  Logo dos programas */
 .programaCell {
   display: flex;
   align-items: center;
@@ -182,7 +182,7 @@ h1 {
   font-size: 12px;
 }
 
-/* 🔹 Status Badge */
+/*  Status Badge */
 .statusBadge {
   display: inline-flex;
   align-items: center;

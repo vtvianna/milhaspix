@@ -1,21 +1,20 @@
 .pageWrapper {
-  font-family: 'DM Sans', sans-serif;
   width: 100%;
-  min-height: 100vh; /* ✅ ocupa toda a altura visível */
+  min-height: 100vh; 
   display: flex;
-  justify-content: center; /* centraliza horizontalmente */
-  align-items: flex-start; /* ❗ o conteúdo começa mais para cima */
+  justify-content: center; 
+  align-items: flex-start; 
   background-color: #fff;
   gap: 80px;
-  padding-top: 80px; /* 🔹 dá espaço visual no topo */
-  padding-bottom: 80px; /* 🔹 evita colar no rodapé */
+  padding-top: 80px; 
+  padding-bottom: 80px; 
   box-sizing: border-box;
 }
 
 /* Stepper à esquerda */
 .colunaStepper {
   display: flex;
-  align-items: flex-start; /* Stepper acompanha o topo do container */
+  align-items: flex-start; 
   justify-content: flex-end;
 }
 

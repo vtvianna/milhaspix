@@ -1,5 +1,4 @@
 body{
-font-family: 'DM Sans', sans-serif;
   width: 1440px;
 height: 800px;
 gap: 32px;
@@ -9,12 +8,11 @@ overflow-x: hidden;
 .tiles {
    flex-wrap: wrap;
    position: relative;
-  font-family: 'DM Sans';
   width: 1216px;
   display: flex;
   gap: 40px;
   margin: 0 auto;
-  align-items: flex-start; /* 🔹 alinha pelo topo */
+  align-items: flex-start; 
 justify-content: center;
 }
 
@@ -39,7 +37,6 @@ justify-content: center;
 }
 
 .container_titulo {
-  
   box-sizing: border-box;
   align-items: center;
   display: flex;
@@ -53,18 +50,15 @@ justify-content: center;
 
 
 .titulo{
-  font-family: 'DM Sans';
 font-weight: 500; 
 font-style: normal;
 font-size: 1.125rem; 
 line-height: 1.75rem; 
 letter-spacing: 0;
   color: #2E3D50;
-  font-family: 'DM Sans';
 }
 
 .titulo_receber{
-  font-family: 'DM Sans';
   width: 110px;
 height: 21px;
 font-style: Medium;
@@ -77,7 +71,6 @@ vertical-align: middle;
 .titulo_ranking{
   width: 146px;
   height: 21px;
- font-family: 'DM Sans';
 font-style: Medium;
 font-size: 16px;
 line-height: 130%;
@@ -85,7 +78,6 @@ letter-spacing: 0%;
 }
 
 .p_ranking{
-font-family: 'DM Sans', sans-serif;
 font-weight: 400px;
 font-size: 12px;
 line-height: 160%;
@@ -162,7 +154,7 @@ letter-spacing: 0%;
   width: 100%;
   max-width: 608px;
   display: flex;
-  justify-content: center; /* 🔹 Centraliza os dois inputs */
+  justify-content: center; 
   align-items: center;
   gap: 16px;
   margin: 0 auto;
@@ -202,7 +194,7 @@ vertical-align: middle;
   cursor: pointer;
 }
 .inputWrapper {
-  position: relative; /* necessário para posicionar o ícone dentro */
+  position: relative; 
   width: 100%;
 }
 
@@ -236,10 +228,10 @@ vertical-align: middle;
 }
 .span{
 font-family: 'DM Sans', sans-serif;
-  font-weight: 700px;          /* Medium = 500 */
-  font-style: normal;        /* Medium não existe, o normal é usar normal/italic */
+  font-weight: 700px;        
+  font-style: normal;        
   font-size: 14px;
-  line-height: 32px;         /* substitui leading-trim */
+  line-height: 32px;         
   letter-spacing: 0%;
   text-align: center;
   vertical-align: middle;
@@ -250,10 +242,10 @@ color: #DC2B2B;
 .p{
   max-width: 100%;
   font-family: 'DM Sans', sans-serif;
-  font-weight: 500;          /* Medium = 500 */
-  font-style: normal;        /* Medium não existe, o normal é usar normal/italic */
+  font-weight: 500;          
+  font-style: normal;       
   font-size: 14px;
-  line-height: 32px;         /* substitui leading-trim */
+  line-height: 32px;         
   letter-spacing: 0;
   text-align: center;
   vertical-align: middle;
@@ -266,10 +258,10 @@ color: #DC2B2B;
   border-radius: 8px;
   padding: 16px;
   display: flex;
-  flex-direction: column; /* 🔹 empilha o título e a lista */
+  flex-direction: column; 
   align-items: flex-start;
-  gap: 16px; /* 🔹 espaço entre título e lista */
-  height: auto; /* 🔹 deixa crescer conforme o conteúdo */
+  gap: 16px; 
+  height: auto; 
 }
 
 .rankingList {
@@ -326,9 +318,9 @@ padding: 12px;
 .mileage_container{
   
   width: 100%;
-  display: block; /* 🔹 garante que ocupe espaço vertical */
+  display: block; 
   margin-top: 16px;
-  overflow: visible; /* 🔹 deixa o conteúdo expandir */
+  overflow: visible; 
   transition: max-height 0.3s ease;
   padding-left: 16px;
 }
@@ -492,9 +484,6 @@ height: 75px;
   justify-content: space-between;
   margin-top: 24px;
   padding-top: 20px;
- 
-
-  /* 🔹 garante que o botão fique ABAIXO e não sobreponha nada */
   order: 99;
   position: relative;
   z-index: 2;
@@ -526,7 +515,7 @@ height: 75px;
 
   html, body {
     width: 100%;
-    overflow-x: hidden; /* 🔹 impede scroll lateral */
+    overflow-x: hidden; 
   }
 
   .tiles {
@@ -540,13 +529,13 @@ height: 75px;
     background: #ffffff;
     margin: 0;
     padding: 0;
-    box-sizing: border-box; /* 🔹 evita somar margens/paddings */
+    box-sizing: border-box; 
   }
 
   .container {
     background: #fff;
-    width: 90%;              /* 🔹 muda de 340px para 90% da tela */
-    max-width: 340px;        /* 🔹 limite máximo igual ao design */
+    width: 90%;              
+    max-width: 340px;        
     min-height: 465px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -555,7 +544,7 @@ height: 75px;
     align-items: center;
     justify-content: flex-start;
     padding: 16px;
-    margin: 0 auto;          /* 🔹 centraliza */
+    margin: 0 auto;       
     box-sizing: border-box;
   }
   .container_titulo {
@@ -618,7 +607,7 @@ height: 75px;
 
   /* Badge abaixo do valor */
   .badge {
-    order: 2; /* 🔹 faz ele vir abaixo do texto de valor */
+    order: 2; /* faz ele vir abaixo do texto de valor */
     align-self: flex-start;
     margin-top: 4px;
     background: #f8f8f8;
@@ -631,18 +620,11 @@ height: 75px;
 
   /* Ajusta o valor em R$ */
   .mileage_value {
-    order: 1; /* 🔹 mantém o texto de valor acima */
+    order: 1; 
   }
 
 
   /* Ranking passa para baixo */
-  
-  
-
-  
-
-  
-
   .rankingContainer {
     width: 100%;
     max-width: 340px;

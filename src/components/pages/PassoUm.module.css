@@ -1,5 +1,5 @@
 body{
-font-family: 'DM Sans', sans-serif;
+
   width: 1440px;
 height: 800px;
 gap: 32px;
@@ -8,7 +8,7 @@ overflow-x: hidden;
 
 .tiles {
   margin: 0 auto;
-  font-family: 'DM Sans', sans-serif;
+
   width: 1216px;
   height: 345px;
   gap: 40px;
@@ -38,7 +38,7 @@ overflow-x: hidden;
 }
 
 .titulo{
-  font-family: 'DM Sans', sans-serif;
+ 
 font-weight: 500; 
 font-style: normal;
 font-size: 1.125rem; 
@@ -64,7 +64,7 @@ letter-spacing: 0;
   flex-wrap: wrap;
 }
 
-/* ===== BOTÕES ===== */
+/*  BOTÕES  */
 .programaBtn {
   width: 143px;
   height: 44px;
@@ -89,7 +89,7 @@ letter-spacing: 0;
   background-color: white;
 }
 
-/* ===== LOGOS ===== */
+/*  LOGOS  */
 
 
 
@@ -123,7 +123,7 @@ letter-spacing: 0;
   
 }
 
-/* ===== CAMPOS ===== */
+/*  CAMPOS  */
 .container_campos {
   box-sizing: border-box;
   display: flex;
@@ -179,7 +179,7 @@ letter-spacing: 0;
 .select {
   background-color: #E2E2E2;
   box-sizing: border-box;
-  padding: 10px 40px 10px 16px; /* espaço à direita pro ícone */
+  padding: 10px 40px 10px 16px; 
   border: 1px solid #ccc;
   border-radius: 44px;
   width: 298px;
@@ -202,7 +202,7 @@ letter-spacing: 0;
   margin-top: 4px;
 }
 
-/* ===== BOTÃO PROSSEGUIR ===== */
+/*  BOTÃO PROSSEGUIR  */
 .botao_container {
   width: 100%;
   display: flex;
@@ -232,7 +232,7 @@ letter-spacing: 0;
   background: #1E90FF;
 }
 
-/* ===== TIPOGRAFIA ===== */
+/*  TIPOGRAFIA  */
 .span_titulo {
   color: #1E90FF;
   font-weight: 500;
@@ -262,16 +262,16 @@ letter-spacing: 0;
   pointer-events: none;
   font-size: 18px;
 }
-/* --- LAYOUT COM CARD LATERAL --- */
+/*  LAYOUT COM CARD LATERAL */
 .mainContent {
  display: flex;
-  flex-direction: row;        /* 🔹 garante lado a lado */
-  justify-content: center;    /* 🔹 centraliza no meio da tela */
-  align-items: flex-start;    /* 🔹 alinha pelo topo */
-  gap: 40px;                  /* 🔹 espaço entre container e card */
+  flex-direction: row;        
+  justify-content: center;    
+  align-items: flex-start;    
+  gap: 40px;                  
   width: 224px;
   height: 86px;
-  max-width: 1200px;          /* 🔹 largura limite */
+  max-width: 1200px;          
   margin: 0 auto;
   padding-top: 40px;
   box-sizing: border-box;
@@ -281,7 +281,7 @@ letter-spacing: 0;
 .infoCard {
   width: 224px;
   height: 86px;
- flex: 0 0 300px;            /* 🔹 largura fixa do card */
+ flex: 0 0 300px;            
   background: #fff;
   border: 1px solid #e2e2e2;
   border-radius: 12px;
@@ -303,8 +303,8 @@ letter-spacing: 0;
 
 
 
-/* --- AJUSTE RESPONSIVO --- */
-/* --- CORRIGE O LAYOUT NO CELULAR --- */
+/*  AJUSTE RESPONSIVO  */
+/*  CORRIGE O LAYOUT NO CELULAR  */
 @media (max-width: 768px) {
 .tiles > :first-child {
     display: none !important;
@@ -312,7 +312,7 @@ letter-spacing: 0;
 
   html, body {
     width: 100%;
-    overflow-x: hidden; /* 🔹 impede scroll lateral */
+    overflow-x: hidden; /* impede scroll lateral */
   }
 
   .tiles {
@@ -331,8 +331,8 @@ letter-spacing: 0;
 
   .container {
     background: #fff;
-    width: 90%;              /* 🔹 muda de 340px para 90% da tela */
-    max-width: 340px;        /* 🔹 limite máximo igual ao design */
+    width: 90%;             
+    max-width: 340px;        
     min-height: 465px;
     border-radius: 12px;
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
@@ -341,7 +341,7 @@ letter-spacing: 0;
     align-items: center;
     justify-content: flex-start;
     padding: 16px;
-    margin: 0 auto;          /* 🔹 centraliza */
+    margin: 0 auto;          
     box-sizing: border-box;
   }
 
