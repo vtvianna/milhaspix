@@ -279,14 +279,12 @@ letter-spacing: 0;
 
 /* CARD LATERAL (fora do container) */
 .infoCard {
-  width: 224px;
-  height: 86px;
- flex: 0 0 300px;            
-  background: #fff;
+  width: 248px;
+  height: 110px;
   border: 1px solid #e2e2e2;
   border-radius: 12px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-  padding: 20px;
+  padding: 12px;
+  gap: 8px;
   text-align: center;
   display: flex;
   align-items: center;
@@ -310,81 +308,111 @@ letter-spacing: 0;
     display: none !important;
   }
 
-  html, body {
-    width: 100%;
-    overflow-x: hidden; /* impede scroll lateral */
+  body {
+ width: 340;
+height: 800;
+gap: 16px;
+
+border-top-width: 1px;
+
   }
 
   .tiles {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-   width: 340px;
-   height: 445px;
-    min-height: 100vh;
-    background: #ffffff;
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box; /* 🔹 evita somar margens/paddings */
+    width: 340px;
+    height: 465px;
+    gap:12px;
+    border: 1px solid black;
+    border-radius: 12px ;
+    padding-right: 16px;
+    padding-left: 16px;
+    overflow: hidden;
+    padding: 0;    
+ 
   }
 
   .container {
-    background: #fff;
-    width: 90%;             
-    max-width: 340px;        
-    min-height: 465px;
-    border-radius: 12px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: flex-start;
-    padding: 16px;
-    margin: 0 auto;          
+    width: 308px;             
+    height: 286px;
+    border-radius: 8px;
+   border: 1px solid black;
     box-sizing: border-box;
+   
+       
   }
 
   .container_titulo{
     width: 308px;
-height: 52px;
-gap: 8px;
+  height: 52px;
+  gap: 8px;
+  padding: 12px;
+  
+  }
 
+  .companhia{
+width: 276px;
+height: 44px;
+padding-top: 10px;
+padding-right: 16px;
+padding-bottom: 10px;
+padding-left: 16px;
+gap: 11px;
 opacity: 1;
-padding: 12px;
-border-bottom-width: 1px;
+border-radius: 44px;
+border-width: 1px;
+
 
   }
-  .container_campos {
-   
+
+
+  .container_companhia select {
+  width: 276px;
+  height: 44px;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-bottom: 10px;
+  padding-left: 16px;
+  border-radius: 44px;
+  gap:11px;
+    margin-bottom: 20px;
   }
+
+  .container_campos {
+    flex-direction: column;
+    height: 69px;
+    width: 276px;
+    align-items: center;
+    justify-content: center;
+   gap: 30px;
+    
+  }
+
+  .campo{
+    width: 276px;
+    height: 44px;
+  padding-top: 10px;
+  padding-right: 16px;
+  padding-left: 16px;
+  padding-bottom: 10px;
+  border-radius: 44px;
+ 
+  }
+
 
   .footerMobile {
-    width: 100%;
-    position: fixed;
-    bottom: 0;
-    left: 0;
-    background: #fff;
-    border-top: 1px solid #eee;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    padding: 10px 20px;
-    box-sizing: border-box;
+    display: none;
   }
+  
 
   .footerMobile span {
-    color: #007bff;
-    font-size: 14px;
+   display: none;
   }
 
   .botao_container button {
-    background: #007bff;
-    color: #fff;
-    border-radius: 20px;
-    padding: 10px 20px;
-    border: none;
-    font-weight: 500;
-    font-size: 14px;
+   display: none;
+  }
+
+  .infoCard{
+    width: 308px;
+    height: 110px;
   }
 }

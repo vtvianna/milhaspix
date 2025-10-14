@@ -39,5 +39,4 @@ Atualiza automaticamente após salvar nova oferta.
   - Frontend React em http://localhost:3000
   - Rotas da API disponíveis em http://localhost:3000/api/offers
   
-  Obs: Se quiser rodar só o front-end sem a API, adicione no package.json:
-     "proxy": "https://seu-projeto.vercel.app"
+  

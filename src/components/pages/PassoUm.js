@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./PassoUm.module.css";
 import Stepper from "../layout/Stepper";
 import { useNavigate } from "react-router-dom";
@@ -13,6 +13,7 @@ import tudoazul from "../../img/tudoazul.png";
 
 function PassoUm() {
   const [programa, setPrograma] = useState(null);
+  const [isMobile, setIsMobile] = useState(false);
   const navigate = useNavigate();
 
   const programas = [
@@ -21,6 +22,14 @@ function PassoUm() {
     { id: "latam", nome: "Latam Pass", logo: latam },
     { id: "air", nome: "Air Portugal", logo: airportugal },
   ];
+
+  // Detecta mobile
+  useEffect(() => {
+    const handleResize = () => setIsMobile(window.innerWidth <= 768);
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
 
   const handleSelecionarPrograma = (id) => {
     setPrograma(id);
@@ -45,28 +54,46 @@ function PassoUm() {
           </p>
         </div>
 
-        {/* Programas */}
+        {/* Programas - muda conforme o dispositivo */}
         <div className={styles.container_companhia}>
-          <div className={styles.companhia}>
-            {programas.map((p) => (
-              <button
-                key={p.id}
-                onClick={() => handleSelecionarPrograma(p.id)}
-                className={`${styles.programaBtn} ${
-                  programa === p.id ? styles.ativo : ""
-                }`}
+          {!isMobile ? (
+            <div className={styles.companhia}>
+              {programas.map((p) => (
+                <button
+                  key={p.id}
+                  onClick={() => handleSelecionarPrograma(p.id)}
+                  className={`${styles.programaBtn} ${
+                    programa === p.id ? styles.ativo : ""
+                  }`}
+                >
+                  <img
+                    src={p.logo}
+                    alt={p.nome}
+                    className={`${styles.companyLogo} ${styles[p.id]}`}
+                  />
+                </button>
+              ))}
+            </div>
+          ) : (
+            <div className={styles.inputWrapper}>
+              <select
+                className={styles.select}
+                value={programa || ""}
+                onChange={(e) => handleSelecionarPrograma(e.target.value)}
               >
-                <img
-                  src={p.logo}
-                  alt={p.nome}
-                  className={`${styles.companyLogo} ${styles[p.id]}`}
-                />
-              </button>
-            ))}
-          </div>
+                <option value="">Selecione um programa</option>
+                {programas.map((p) => (
+                  <option key={p.id} value={p.id}>
+                    {p.nome}
+                  </option>
+                ))}
+              </select>
+              <PiCaretUpDown className={styles.inputIcon} />
+            </div>
+          )}
         </div>
 
-        {/* Produto + CPF estático */}
+        {/* Produto + CPF */}
         <div className={styles.container_campos}>
           <div className={styles.campo}>
             <label htmlFor="produto">Produto</label>
@@ -89,11 +116,7 @@ function PassoUm() {
         </div>
 
         <div className={styles.botao_container}>
-          <Button
-            texto="Prosseguir"
-            to="/passodois"
-            onValidar={handleProsseguir}
-          />
+          <Button texto="Prosseguir" to="/passodois" onValidar={handleProsseguir} />
         </div>
       </div>
 
@@ -109,3 +132,4 @@ function PassoUm() {
 }
 
 export default PassoUm;
+
