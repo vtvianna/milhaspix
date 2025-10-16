@@ -214,14 +214,21 @@ function PassoTres() {
           </div>
 
           {/* Botões de navegação */}
-          <div className={styles.botao_container}>
-            <ButtonVoltar texto="Voltar" to="/passodois" />
-            <Button
-              texto="Concluir"
-              to="/passoquatro"
-              onValidar={handleProsseguir}
-            />
-          </div>
+         
+<div className={styles.botao_container}>
+  <ButtonVoltar texto="Voltar" to="/passodois" />
+
+  {/* Texto entre os botões */}
+  <p className={styles.termosTexto}>
+    Ao prosseguir você concorda com os termos de uso
+  </p>
+
+  <Button
+    texto="Concluir"
+    to="/passoquatro"
+    onValidar={handleProsseguir}
+  />
+</div>
         </div>
 
         <div className={styles.infoCard}>

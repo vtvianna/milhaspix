@@ -12,8 +12,9 @@
 .container {
   border: 2px solid #D9D9D9;
   border-radius: 20px;
-  font-family: 'DM Sans';
+  
   width: 1216px;
+  height: 322px;
   display: flex;
   flex-direction: column;
   gap: 20px;
@@ -116,9 +117,13 @@ h1 {
 
 /*  Tabela */
 .tabela {
-  width: 100%;
-  border-collapse: collapse;
-  background: #fff;
+ width: 1170px;
+height: 210px;
+justify-content: space-between;
+top: 248px;
+left: 132px;
+border-collapse: collapse;
+
 }
 
 .tabela th,
@@ -128,14 +133,16 @@ h1 {
 }
 
 .tabela th {
-  font-weight: 600;
+  font-weight: 600px;
   color: #121212;
 }
 
-.tabela thead tr {
-  border-top: 2px solid black;
-  border-bottom: 2px solid black;
+.tabela thead {
+  width: 100%;
+  border-top: 1px solid #000;
+  border-bottom: 1px solid #000;
 }
+
 
 .tabela tr:hover {
   background-color: #f9fafb;
@@ -202,8 +209,8 @@ h1 {
 
 /* Cores personalizadas */
 .statusAtiva {
-  background-color: #d1fae5;
-  color: #047857;
+  background-color: #D1FAE5;
+  color: #065F46;
 }
 
 .statusAtiva .statusDot {
@@ -211,12 +218,13 @@ h1 {
 }
 
 .statusUtilizacao {
-  background-color: #dbeafe;
+  background-color: #C1D8EE;
   color: #1d4ed8;
 }
 
 .statusUtilizacao .statusDot {
-  background-color: #3b82f6;
+ background-color: #C1D8EE;
+
 }
 
 .statusPadrao {

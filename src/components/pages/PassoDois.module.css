@@ -95,8 +95,6 @@ letter-spacing: 0%;
   flex-direction: column;
   align-items: flex-start; 
   margin: 0 auto;
-  
-  
 }
 
 .receber {
@@ -110,17 +108,18 @@ letter-spacing: 0%;
 
 /* botões das companhias */
 .programaBtn {
-  width: 143px;
+ width: 143px;
   height: 44px;
   gap: 8px;
- 
   padding: 12px 8px;
   border-radius: 56px;
-  border: 2px;
-  border-color: #1E90FF;
+  border: 2px solid transparent;
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: #fff;
+  transition: border-color 0.2s ease, background-color 0.2s ease;
+  cursor: pointer;
 }
 
 .programaBtn:hover {
@@ -128,13 +127,12 @@ letter-spacing: 0%;
 }
 
 .programaBtn.ativo {
-  border-color: #007bff;
-  background-color: #e6f0ff;
+ border-color: #007bff;
+  background-color: white;
 }
 
 
 .badge {
- 
   display: flex;
   justify-content: flex-end; 
   align-items: center;
@@ -240,8 +238,6 @@ color: #DC2B2B;
 
 }
 .p{
-  max-width: 100%;
-  font-family: 'DM Sans', sans-serif;
   font-weight: 500;          
   font-style: normal;       
   font-size: 14px;
@@ -254,7 +250,6 @@ color: #DC2B2B;
 
 .rankingContainer {
  width: 248px;
-  
   border-radius: 8px;
   padding: 16px;
   display: flex;
@@ -266,22 +261,49 @@ color: #DC2B2B;
 
 .rankingList {
   list-style: none;
-  width: 100%;
- 
-  border: 1px solid #E2E2E2;
+  width: 248px;
+  height: 223px;
   display: flex;
   flex-direction: column;
   gap: 8px;
+ 
+
 }
 
+.rankingContainerL{
+list-style: none;
+  width: 248px;
+  height: 192px;
+  gap: 8px;
+  border-radius: 8px;
+  border: 1px solid #E2E2E2;
+  
+}
+
+
+
+
+
 .rankingItem {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 0.6rem 0;
-  border-bottom: 1px solid #e0e0e0;
-  font-size: 16px;
-  background-color: #fff;
+width: 248;
+height: 38px;
+gap: 8px;
+padding-right: 16px;
+padding-left: 8px;
+border-bottom-width: 1px;
+
+
+}
+
+.label_ranking{
+width: 248px;
+height: 23px;
+font-style: Medium;
+font-size: 16px;
+line-height: 28px;
+letter-spacing: 0%;
+vertical-align: middle;
+
 }
 
 .ranking_titulo{
@@ -336,8 +358,8 @@ border-radius: 40px;
 
 /* botão prosseguir (igual ao PassoTrês) */
 .botao_container {
-   width: 640px;               /* mesma largura do container */
-  margin-left: 0;             /* garante alinhamento com a borda esquerda */
+   width: 640px;              
+  margin-left: 0;             
   display: flex;
   justify-content: flex-end; 
   padding: 16px;

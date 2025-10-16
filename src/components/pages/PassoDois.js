@@ -182,9 +182,12 @@ function PassoDois() {
           </p>
         </div>
 
+
+           
         <div className={styles.rankingList}>
-          <label>Ranking das ofertas</label>
-          <ul className={styles.rankingList}>
+          <label className={styles.label_ranking}>Ranking das ofertas</label>
+          
+          <ul className={styles.rankingContainerL}>
             {Array.isArray(ranking) && ranking.length > 0 ? (
               ranking.map((item) => {
                 const isUserPosition =
